@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CabinConnect - Student Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "primary-dark": "#1a7cd4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "pastel-red": "#fee2e2",
+                        "pastel-blue": "#e0f2fe",
+                        "pastel-pink": "#fce7f3",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: #f6f7f8;
+            background-image:
+                radial-gradient(at 10% 20%, rgba(254, 226, 226, 0.8) 0px, transparent 60%),
+                radial-gradient(at 90% 10%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
+                radial-gradient(at 80% 80%, rgba(252, 231, 243, 0.8) 0px, transparent 60%),
+                radial-gradient(at 20% 90%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
+                radial-gradient(at 50% 50%, rgba(252, 231, 243, 0.4) 0px, transparent 70%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Faculty card */
+        .faculty-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 2rem;
+            border: 1px solid rgba(240, 240, 240, 0.8);
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -10px rgba(43, 140, 238, 0.15);
+        }
+
+        .profile-img {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faculty-card:hover .profile-img {
+            transform: scale(1.08);
+        }
+
+        .status-badge {
+            transition: all 0.3s;
+        }
+
+        .faculty-card:hover .status-badge {
+            transform: scale(1.05);
+        }
+
+        .status-pulse {
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Action btn */
+        .action-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 20px rgba(43, 140, 238, 0.35);
+        }
+
+        /* Search */
+        .search-input {
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(43, 140, 238, 0.15);
+            border-color: #2b8cee;
+            outline: none;
+            background: white;
+        }
+
+        .search-icon {
+            transition: all 0.3s;
+        }
+
+        .search-container:focus-within .search-icon {
+            transform: scale(1.1);
+            color: #2b8cee;
+        }
+
+        /* Filter buttons */
+        .filter-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-1px);
+            background: #e0f2fe;
+            border-color: rgba(43, 140, 238, 0.4);
+            color: #2b8cee;
+        }
+
+        .filter-btn.active {
+            background: #2b8cee;
+            color: white;
+            border-color: #2b8cee;
+            box-shadow: 0 4px 14px rgba(43, 140, 238, 0.35);
+            font-weight: 700;
+        }
+
+        /* Header btn */
+        .header-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            background: #e0f2fe;
+        }
+
+        .logo {
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            transition: transform 0.3s;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(10deg);
+        }
+
+        /* Info row */
+        .info-row {
+            transition: all 0.2s;
+        }
+
+        .info-row:hover {
+            padding-left: 8px;
+        }
+
+        /* Dept tag */
+        .dept-tag {
+            transition: all 0.3s;
+        }
+
+        .dept-tag:hover {
+            background: #e0f2fe;
+            color: #2b8cee;
+            transform: scale(1.05);
+        }
+
+        /* Stats card */
+        .stats-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 1rem;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Avatar ring */
+        .avatar-ring {
+            transition: all 0.3s;
+        }
+
+        .faculty-card:hover .avatar-ring {
+            border-color: #2b8cee;
+            box-shadow: 0 0 18px rgba(43, 140, 238, 0.3);
+        }
+
+        /* Dropdown */
+        .dropdown-select {
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .dropdown-select:focus {
+            border-color: #2b8cee;
+            box-shadow: 0 0 0 3px rgba(43, 140, 238, 0.15);
+            outline: none;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: hidden;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="glass-nav sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                <a href="#" class="logo flex items-center gap-3 text-slate-900">
+                    <div
+                        class="size-9 bg-primary rounded-xl flex items-center justify-center logo-icon shadow shadow-primary/30">
+                        <span class="material-symbols-outlined text-white text-xl">meeting_room</span>
+                    </div>
+                    <div>
+                        <h1 class="text-base font-black leading-tight text-slate-900 tracking-tight">CabinConnect</h1>
+                        <p class="text-xs text-slate-500">Student Portal</p>
+                    </div>
+                </a>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="openMap()" title="Campus Map"
+                        class="header-btn p-2.5 rounded-lg bg-white/60 border border-white/50 text-slate-600 shadow-sm">
+                        <span class="material-symbols-outlined text-lg">map</span>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <div class="text-right hidden sm:block">
+                            <p class="text-sm font-bold text-slate-900" id="userName">Student</p>
+                            <p class="text-xs text-slate-400">Student Account</p>
+                        </div>
+                        <div
+                            class="size-9 rounded-xl bg-primary flex items-center justify-center shadow shadow-primary/30">
+                            <span class="material-symbols-outlined text-white text-lg">person</span>
+                        </div>
+                        <button onclick="logout()"
+                            class="header-btn p-2.5 rounded-lg bg-white/60 border border-white/50 text-slate-500 hover:text-red-500 shadow-sm">
+                            <span class="material-symbols-outlined text-lg">logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h2 class="text-slate-900 text-3xl font-black tracking-tight">Faculty Directory</h2>
+                <p class="text-slate-500 mt-1">View real-time availability and contact information</p>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="stats-card p-4 shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-emerald-600">check_circle</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-black text-slate-900" id="availableCount">0</p>
+                            <p class="text-xs text-slate-500 font-semibold">Available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-card p-4 shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-xl bg-amber-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-amber-600">schedule</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-black text-slate-900" id="busyCount">0</p>
+                            <p class="text-xs text-slate-500 font-semibold">Busy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-card p-4 shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-xl bg-red-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-red-500">block</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-black text-slate-900" id="unavailableCount">0</p>
+                            <p class="text-xs text-slate-500 font-semibold">Unavailable</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-card p-4 shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-slate-500">flight_takeoff</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-black text-slate-900" id="leaveCount">0</p>
+                            <p class="text-xs text-slate-500 font-semibold">On Leave</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="glass-card rounded-[2rem] p-5 mb-8 shadow-sm">
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <div class="search-container flex-1 relative">
+                        <span
+                            class="material-symbols-outlined search-icon absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                        <input type="text" id="searchInput"
+                            class="search-input w-full h-12 pl-12 pr-4 rounded-xl text-slate-900 placeholder-slate-400"
+                            placeholder="Search faculty by name, department, or cabin..." oninput="filterFaculty()" />
+                    </div>
+                    <select id="deptFilter"
+                        class="dropdown-select h-12 px-4 rounded-xl text-slate-800 cursor-pointer font-semibold"
+                        onchange="filterFaculty()">
+                        <option value="">All Departments</option>
+                    </select>
+                </div>
+
+                <!-- Status Filter Pills -->
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full border border-black/10 bg-white/60 text-sm font-semibold text-slate-700 active"
+                        data-status="all" onclick="setStatusFilter('all', this)">All Status</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full border border-black/10 bg-white/60 text-sm font-semibold text-slate-700"
+                        data-status="available" onclick="setStatusFilter('available', this)">
+                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>Available
+                    </button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full border border-black/10 bg-white/60 text-sm font-semibold text-slate-700"
+                        data-status="busy" onclick="setStatusFilter('busy', this)">
+                        <span class="inline-block w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>Busy
+                    </button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full border border-black/10 bg-white/60 text-sm font-semibold text-slate-700"
+                        data-status="unavailable" onclick="setStatusFilter('unavailable', this)">
+                        <span class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1.5"></span>Unavailable
+                    </button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full border border-black/10 bg-white/60 text-sm font-semibold text-slate-700"
+                        data-status="leave" onclick="setStatusFilter('leave', this)">
+                        <span class="inline-block w-2 h-2 rounded-full bg-slate-400 mr-1.5"></span>On Leave
+                    </button>
+                </div>
+            </div>
+
+            <!-- Faculty Grid -->
+            <div id="facultyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <span class="material-symbols-outlined text-6xl text-slate-300 mb-4">search_off</span>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">No faculty found</h3>
+                <p class="text-slate-500">Try adjusting your search or filters</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="glass-nav border-t border-white/20 py-5 mt-8">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p class="text-sm text-slate-400">© 2024 CampusEase. All rights reserved.</p>
+                <p class="text-xs text-slate-400">Last refreshed: <span id="lastRefresh">--</span></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="modal-overlay" onclick="if(event.target.id === 'mapModal') closeMap()">
+        <div class="modal-content rounded-[2rem] p-0 shadow-2xl">
+            <div class="flex items-center justify-between p-4 border-b border-slate-100">
+                <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">map</span>
+                    Campus Map
+                </h2>
+                <button onclick="closeMap()" class="header-btn p-2 rounded-lg bg-black/5 text-slate-600">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-4">
+                <img src="https://images.unsplash.com/photo-1562240020-ce31ccb0fa7d?w=1200&h=800&fit=crop"
+                    alt="Campus Map" class="w-full max-w-4xl rounded-xl" />
+                <p class="text-sm text-slate-400 mt-3 text-center">Click on a building to view faculty locations</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/data.js"></script>
+    <script>
+        let currentStatusFilter = 'all';
+        let allFacultyCache = [];
+
+        const session = CabinConnect.requireAuth(['student']);
+        if (session) {
+            document.getElementById('userName').textContent = session.name;
+        }
+
+        function logout() {
+            CabinConnect.logout();
+            window.location.href = '/login/login.html';
+        }
+
+        function openMap() { document.getElementById('mapModal').classList.add('active'); }
+        function closeMap() { document.getElementById('mapModal').classList.remove('active'); }
+
+        function createFacultyCard(faculty) {
+            const statusInfo = CabinConnect.getStatusInfo(faculty.status, faculty.onHoliday);
+            const floatClass = faculty.status === 'available' && !faculty.onHoliday ? 'float-animation' : '';
+
+            return `
+                <div class="faculty-card ${floatClass} relative p-6 overflow-hidden shadow-sm">
+                    <!-- Status Badge -->
+                    <div class="status-badge absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white shadow-sm border border-slate-100">
+                        <span class="status-pulse w-2 h-2 rounded-full ${statusInfo.bgClass}"></span>
+                        <span class="text-xs font-bold text-slate-700">${statusInfo.label}</span>
+                    </div>
+
+                    <!-- Profile -->
+                    <div class="flex flex-col items-center text-center mb-5">
+                        <div class="relative">
+                            ${faculty.statusMessage ? `
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10 max-w-[200px] w-max">
+                                <div class="relative bg-white border border-primary/20 rounded-xl px-3 py-2 shadow-md">
+                                    <p class="text-xs text-slate-700 text-center line-clamp-2">${faculty.statusMessage}</p>
+                                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white"></div>
+                                </div>
+                            </div>
+                            ` : ''}
+                            <div class="avatar-ring w-24 h-24 rounded-full border-4 border-slate-100 shadow-md ${faculty.statusMessage ? 'mt-8' : ''} overflow-hidden">
+                                <div class="profile-img w-full h-full bg-cover bg-center" style="background-image: url('${faculty.image}')"></div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-black text-slate-900 mt-4">${faculty.name}</h3>
+                        <span class="dept-tag inline-block mt-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">${faculty.department}</span>
+                    </div>
+
+                    <!-- Info -->
+                    <div class="space-y-2 bg-slate-50 rounded-xl p-3">
+                        <div class="info-row flex items-center gap-3 py-1 px-2 rounded-lg transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-lg">room</span>
+                            <span class="text-sm text-slate-700 font-semibold">${faculty.cabin}</span>
+                        </div>
+                        <div class="info-row flex items-center gap-3 py-1 px-2 rounded-lg transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-lg">phone</span>
+                            <a href="tel:${faculty.phone}" class="text-sm text-slate-700 font-semibold hover:text-primary transition-colors">${faculty.phone}</a>
+                        </div>
+                        <div class="info-row flex items-center gap-3 py-1 px-2 rounded-lg transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-lg">mail</span>
+                            <a href="mailto:${faculty.email}" class="text-sm text-primary font-semibold hover:underline truncate">${faculty.email}</a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Button -->
+                    <a href="mailto:${faculty.email}" class="action-btn w-full mt-4 py-3 rounded-full bg-primary text-white font-bold flex items-center justify-center gap-2 no-underline shadow-md shadow-primary/25 transition-all">
+                        <span class="material-symbols-outlined text-lg">email</span>
+                        Contact
+                    </a>
+                </div>
+            `;
+        }
+
+        function renderFaculty(facultyList) {
+            const grid = document.getElementById('facultyGrid');
+            const emptyState = document.getElementById('emptyState');
+            if (facultyList.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            } else {
+                grid.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                grid.innerHTML = facultyList.map(createFacultyCard).join('');
+            }
+        }
+
+        function updateStats(facultyList) {
+            const stats = { available: 0, busy: 0, unavailable: 0, leave: 0 };
+            facultyList.forEach(f => {
+                if (f.onHoliday) stats.leave++;
+                else if (f.status === 'available') stats.available++;
+                else if (f.status === 'busy') stats.busy++;
+                else stats.unavailable++;
+            });
+            document.getElementById('availableCount').textContent = stats.available;
+            document.getElementById('busyCount').textContent = stats.busy;
+            document.getElementById('unavailableCount').textContent = stats.unavailable;
+            document.getElementById('leaveCount').textContent = stats.leave;
+        }
+
+        function populateDeptFilter(facultyList) {
+            const select = document.getElementById('deptFilter');
+            const current = select.value;
+            const depts = [...new Set(facultyList.map(f => f.department))].sort();
+            select.innerHTML = '<option value="">All Departments</option>';
+            depts.forEach(d => {
+                const opt = document.createElement('option');
+                opt.value = d;
+                opt.textContent = d;
+                if (d === current) opt.selected = true;
+                select.appendChild(opt);
+            });
+        }
+
+        function setStatusFilter(status, btn) {
+            currentStatusFilter = status;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const deptFilter = document.getElementById('deptFilter').value;
+            let faculty = allFacultyCache;
+
+            if (searchTerm) {
+                faculty = faculty.filter(f =>
+                    f.name.toLowerCase().includes(searchTerm) ||
+                    f.department.toLowerCase().includes(searchTerm) ||
+                    f.cabin.toLowerCase().includes(searchTerm)
+                );
+            }
+            if (deptFilter) {
+                faculty = faculty.filter(f => f.department === deptFilter);
+            }
+            if (currentStatusFilter !== 'all') {
+                faculty = faculty.filter(f => {
+                    if (currentStatusFilter === 'leave') return f.onHoliday;
+                    if (f.onHoliday) return false;
+                    return f.status === currentStatusFilter;
+                });
+            }
+            renderFaculty(faculty);
+        }
+
+        function filterFaculty() { applyFilters(); }
+
+        async function refreshData() {
+            const faculty = await CabinConnect.getFaculty();
+            allFacultyCache = faculty;
+            updateStats(faculty);
+            populateDeptFilter(faculty);
+            applyFilters();
+            document.getElementById('lastRefresh').textContent = new Date().toLocaleTimeString();
+        }
+
+        refreshData();
+        setInterval(refreshData, 30000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Jane Smith",
+    "department": "Computer Science",
+    "cabin": "B-302",
+    "email": "jane.smith@campus.edu",
+    "phone": "+1 (555) 123-4567",
+    "status": "unavailable",
+    "statusMessage": "joe can go suck a fat one",
+    "onHoliday": false,
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAqBpPgfpfv_WA1NNrB71i8IVWAXPLdys3DhL0YsZzmMIAGHiziq1Ss8QVQ9Va7RKZrHL1DYcg7ZL4ONjR4F4Q_8EKyv6wYJsswFbAdaJubPpP1ElRSKTYYjcVCJZb8K-Ov9h5Y4kw5pe5W_tM9-OaIgH8eLEGa22d-2A6SLKNOX1l_Bf9WqjPDvxLEapdDWGuoEe1rGDDOZfHWzU3ocF1r-REFJsMrafkeG_6aaJeOhqTH2itob_5bzZg1Z5VLDx0vtI6zfjgT0e8"
+  },
+  {
+    "id": 2,
+    "name": "Prof. Michael Chen",
+    "department": "Mathematics",
+    "cabin": "A-201",
+    "email": "m.chen@campus.edu",
+    "phone": "+1 (555) 234-5678",
+    "status": "unavailable",
+    "statusMessage": "",
+    "onHoliday": true,
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCs5hydR98w6wuorntHucZGqZGntHne42zQEHB0z_HJM9dF3mptQO12mWl4S1VyZJ2sT8aBLZY4ldBEVtLfZLeZYJv1w1KkbZuOU90Bj073sXIlA8UJhIBlq7HRTgPE31CFZImiF-PJ11oBWxQjJqN7BsxPheGhj6shkYgF3Zdx3RTDkwbBWyCM3m5b4QFM-SIOwXPJc_D9Ou3Jp9UaRcBRTEbb_-2l2V4xi4tKPRH1k4iia8M1qKMSPu2e8SEBIGwkxxmd2OA1n68"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Sarah Williams",
+    "department": "Physics",
+    "cabin": "C-105",
+    "email": "s.williams@campus.edu",
+    "phone": "+1 (555) 345-6789",
+    "status": "unavailable",
+    "statusMessage": "Out of office - In class",
+    "onHoliday": false,
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCisoZf-98FpmBUX4LPJs55b_3m4qvZN6ZKizUvStOaI8TQQaKEcZ4IoUHTFD4ytrwgfhr7TgZRzZB0hy0QotkGiu-ljHp7rhUoBpmwRVX6kxxNapBYeRMvEwrX1BPzD5Wp9TshI8p_Nm8ZfxapCvZdv5wWCU67ftLss4bIayNpz-9UHXvQ9XsiTPKTcDJm9rWg-mrEG-YpbpRZKYO1l_iaM-vC2jaeoeVjMiEoXEHconkeB7Pn_kYNCTIU2trDBGEwiqbfM2W7jkU"
+  },
+  {
+    "id": 4,
+    "name": "Prof. David Kumar",
+    "department": "Chemistry",
+    "cabin": "D-410",
+    "email": "d.kumar@campus.edu",
+    "phone": "+1 (555) 456-7890",
+    "status": "available",
+    "statusMessage": "Office hours: 2-5 PM",
+    "onHoliday": false,
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
+  },
+  {
+    "id": 5,
+    "name": "Dr. Emily Rodriguez",
+    "department": "Computer Science",
+    "cabin": "B-415",
+    "email": "e.rodriguez@campus.edu",
+    "phone": "+1 (555) 567-8901",
+    "status": "busy",
+    "statusMessage": "Advising session in progress",
+    "onHoliday": false,
+    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face"
+  },
+  {
+    "id": 6,
+    "name": "Prof. Robert Taylor",
+    "department": "Mathematics",
+    "cabin": "A-308",
+    "email": "r.taylor@campus.edu",
+    "phone": "+1 (555) 678-9012",
+    "status": "unavailable",
+    "statusMessage": "On Leave",
+    "onHoliday": true,
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face"
+  },
+  {
+    "id": 7,
+    "name": "Dr. Priya Nair",
+    "department": "Biology",
+    "cabin": "E-112",
+    "email": "p.nair@campus.edu",
+    "phone": "+1 (555) 789-0123",
+    "status": "available",
+    "statusMessage": "Walk-ins welcome!",
+    "onHoliday": false,
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face"
+  },
+  {
+    "id": 8,
+    "name": "Prof. James Okonkwo",
+    "department": "English",
+    "cabin": "F-203",
+    "email": "j.okonkwo@campus.edu",
+    "phone": "+1 (555) 890-1234",
+    "status": "busy",
+    "statusMessage": "Office consultation — back at 4 PM",
+    "onHoliday": false,
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face"
+  },
+  {
+    "id": 9,
+    "name": "Dr. Lisa Fernandez",
+    "department": "History",
+    "cabin": "G-317",
+    "email": "l.fernandez@campus.edu",
+    "phone": "+1 (555) 901-2345",
+    "status": "unavailable",
+    "statusMessage": "Grading exams — available Monday",
+    "onHoliday": false,
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face"
+  },
+  {
+    "id": 10,
+    "name": "Prof. Alan Mehta",
+    "department": "Engineering",
+    "cabin": "H-501",
+    "email": "a.mehta@campus.edu",
+    "phone": "+1 (555) 012-3456",
+    "status": "available",
+    "statusMessage": "",
+    "onHoliday": false,
+    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face"
+  }
+]

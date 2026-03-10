@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CabinConnect</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #dbeafe, #fce7f3, #fde68a);
+        }
+
+        /* outer container */
+
+        .main {
+            width: 900px;
+            background: white;
+            border-radius: 30px;
+            padding: 60px 70px;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+
+            position: relative;
+        }
+
+        /* decorative blobs */
+
+        .main:before {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: #fbcfe8;
+            border-radius: 50%;
+            top: -60px;
+            right: -60px;
+            opacity: 0.4;
+        }
+
+        .main:after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: #bfdbfe;
+            border-radius: 50%;
+            bottom: -80px;
+            left: -80px;
+            opacity: 0.4;
+        }
+
+        /* heading */
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .header p {
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        /* toggle buttons */
+
+        .toggle {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 35px;
+        }
+
+        .toggle button {
+            padding: 16px 40px;
+            border-radius: 16px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .student {
+            background: linear-gradient(135deg, #fb923c, #ec4899);
+            color: white;
+            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.25);
+        }
+
+        .faculty {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        /* form */
+
+        form {
+            max-width: 420px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            margin-bottom: 22px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ec4899;
+        }
+
+        /* row */
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .row a {
+            color: #f97316;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* sign in button */
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #fb923c, #ec4899);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
+        }
+
+        /* footer */
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #64748b;
+        }
+
+        .footer span {
+            color: #f97316;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="header">
+            <h1>Welcome back! 👋</h1>
+            <p>Sign in to continue your journey</p>
+        </div>
+
+        <div class="toggle">
+            <button class="student">🎓 Student</button>
+            <button class="faculty">👩‍🏫 Faculty</button>
+        </div>
+
+        <form>
+
+            <label>Email Address</label>
+            <input type="email" placeholder="your.email@example.com">
+
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password">
+
+            <div class="row">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button class="login-btn">Sign In 🚀</button>
+
+        </form>
+
+        <div class="footer">
+            New to CabinConnect? <span>Create Account →</span>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

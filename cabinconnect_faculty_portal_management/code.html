@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CabinConnect Faculty Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "primary-dark": "#1a7cd4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "pastel-red": "#fee2e2",
+                        "pastel-blue": "#e0f2fe",
+                        "pastel-pink": "#fce7f3",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-display {
+            font-family: 'Public Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .status-radio:checked+label {
+            border-color: currentColor;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #2b8cee;
+        }
+
+        .toggle-checkbox:checked+.toggle-label {
+            background-color: #2b8cee;
+        }
+
+        /* Hover animations */
+        .header-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            background: #e0f2fe;
+        }
+
+        .status-option {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .status-option:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-section {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .primary-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(43, 140, 238, 0.35);
+        }
+
+        .primary-btn:hover::before {
+            left: 100%;
+        }
+
+        .secondary-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-2px);
+            background: #e0f2fe;
+            border-color: rgba(43, 140, 238, 0.3);
+        }
+
+        .upload-zone {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .upload-zone:hover {
+            transform: scale(1.01);
+            border-color: #2b8cee;
+            background: #e0f2fe;
+        }
+
+        .profile-avatar {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(43, 140, 238, 0.25);
+        }
+
+        .toggle-wrapper {
+            transition: all 0.3s;
+        }
+
+        .toggle-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .logo {
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .input-field {
+            transition: all 0.3s;
+        }
+
+        .input-field:hover {
+            border-color: rgba(43, 140, 238, 0.4);
+        }
+
+        .input-field:focus {
+            border-color: #2b8cee;
+            box-shadow: 0 0 0 3px rgba(43, 140, 238, 0.15);
+            transform: scale(1.01);
+        }
+
+        .checkbox-item {
+            transition: all 0.2s;
+        }
+
+        .checkbox-item:hover {
+            background: #e0f2fe;
+        }
+
+        .file-card {
+            transition: all 0.3s;
+        }
+
+        .file-card:hover {
+            transform: translateX(5px);
+            background: #e0f2fe;
+        }
+
+        .delete-btn {
+            transition: all 0.3s;
+        }
+
+        .delete-btn:hover {
+            transform: scale(1.2);
+            color: #ef4444;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .dark .modal-content {
+            background: #221610;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .calendar-day:hover {
+            background: #e0f2fe;
+            transform: scale(1.1);
+        }
+
+        .calendar-day.today {
+            background: #2b8cee;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .calendar-day.selected {
+            background: #2b8cee;
+            color: #fff;
+        }
+
+        .calendar-day.has-tasks {
+            position: relative;
+        }
+
+        .calendar-day.has-tasks::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .calendar-day.today.has-tasks::after,
+        .calendar-day.selected.has-tasks::after {
+            background: #fff;
+        }
+
+        .task-item {
+            transition: all 0.2s;
+        }
+
+        .task-item:hover {
+            transform: translateX(3px);
+            background: #e0f2fe;
+        }
+
+        .task-delete:hover {
+            color: #ef4444;
+            transform: scale(1.2);
+        }
+    </style>
+    <style>
+        body {
+            background-color: #f6f7f8 !important;
+            background-image:
+                radial-gradient(at 10% 20%, rgba(254, 226, 226, 0.8) 0px, transparent 60%),
+                radial-gradient(at 90% 10%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
+                radial-gradient(at 80% 80%, rgba(252, 231, 243, 0.8) 0px, transparent 60%),
+                radial-gradient(at 20% 90%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
+                radial-gradient(at 50% 50%, rgba(252, 231, 243, 0.4) 0px, transparent 70%) !important;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+    <div class="relative flex flex-col w-full group/design-root overflow-x-hidden">
+        <header class="glass-nav sticky top-0 z-50"
+            style="background:rgba(255,255,255,0.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.2);">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-10 py-3 flex items-center justify-between whitespace-nowrap">
+                <a href="/cabinconnect_faculty_portal_management/code.html"
+                    class="logo flex items-center gap-3 text-slate-900 dark:text-white">
+                    <div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-xl">meeting_room</span>
+                    </div>
+                    <h2 class="text-lg font-black leading-tight tracking-tight">CabinConnect – Faculty Portal</h2>
+                </a>
+                <div class="flex flex-1 justify-end gap-4 items-center">
+                    <div class="flex gap-2">
+                        <button onclick="openSettings()"
+                            class="header-btn flex items-center justify-center rounded-lg h-10 w-10 bg-white/60 dark:bg-white/5 text-slate-900 dark:text-white">
+                            <span class="material-symbols-outlined text-[20px]">settings</span>
+                        </button>
+                        <button onclick="openCalendar()"
+                            class="header-btn flex items-center justify-center rounded-lg h-10 w-10 bg-white/60 dark:bg-white/5 text-slate-900 dark:text-white">
+                            <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                        </button>
+                        <button onclick="logout()"
+                            class="header-btn flex items-center justify-center rounded-lg h-10 w-10 bg-white/60 dark:bg-white/5 text-slate-900 dark:text-white hover:text-red-500"
+                            title="Logout">
+                            <span class="material-symbols-outlined text-[20px]">logout</span>
+                        </button>
+                    </div>
+                    <div id="headerAvatar"
+                        class="profile-avatar bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCs5hydR98w6wuorntHucZGqZGntHne42zQEHB0z_HJM9dF3mptQO12mWl4S1VyZJ2sT8aBLZY4ldBEVtLfZLeZYJv1w1KkbZuOU90Bj073sXIlA8UJhIBlq7HRTgPE31CFZImiF-PJ11oBWxQjJqN7BsxPheGhj6shkYgF3Zdx3RTDkwbBWyCM3m5b4QFM-SIOwXPJc_D9Ou3Jp9UaRcBRTEbb_-2l2V4xi4tKPRH1k4iia8M1qKMSPu2e8SEBIGwkxxmd2OA1n68");'>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="max-w-[1000px] mx-auto w-full px-4 sm:px-10 py-8">
+            <!-- Page Heading -->
+            <div class="flex flex-col gap-2 mb-8">
+                <h1 class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Manage
+                    Your Office</h1>
+                <p class="text-slate-500 dark:text-primary/80 text-base font-normal">Real-time cabin status and resource
+                    updates for students.</p>
+            </div>
+            <!-- Profile Header Card (Read-only) -->
+            <div class="card-section bg-white rounded-[2rem] border border-slate-100 p-6 mb-8 shadow-sm">
+                <div class="flex flex-col sm:flex-row gap-6 items-center">
+                    <div id="profileAvatarMain"
+                        class="profile-avatar bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24 border-4 border-primary/20"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqBpPgfpfv_WA1NNrB71i8IVWAXPLdys3DhL0YsZzmMIAGHiziq1Ss8QVQ9Va7RKZrHL1DYcg7ZL4ONjR4F4Q_8EKyv6wYJsswFbAdaJubPpP1ElRSKTYYjcVCJZb8K-Ov9h5Y4kw5pe5W_tM9-OaIgH8eLEGa22d-2A6SLKNOX1l_Bf9WqjPDvxLEapdDWGuoEe1rGDDOZfHWzU3ocF1r-REFJsMrafkeG_6aaJeOhqTH2itob_5bzZg1Z5VLDx0vtI6zfjgT0e8");'>
+                    </div>
+                    <div class="flex flex-col text-center sm:text-left">
+                        <h3 id="profileName" class="text-slate-900 dark:text-white text-2xl font-bold leading-tight">
+                            Loading…</h3>
+                        <p id="profileDept" class="text-slate-500 dark:text-primary/70 text-base">—</p>
+                        <div
+                            class="mt-2 inline-flex items-center justify-center sm:justify-start gap-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary px-3 py-1 rounded-full w-fit">
+                            <span class="material-symbols-outlined text-sm">room</span>
+                            Cabin Number: <span id="profileCabin">—</span>
+                        </div>
+                    </div>
+                    <div class="sm:ml-auto">
+                        <div
+                            class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input
+                                class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                                id="holidayToggle" name="toggle" type="checkbox" />
+                            <label
+                                class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 dark:bg-white/10 cursor-pointer"
+                                for="holidayToggle"></label>
+                        </div>
+                        <label class="text-sm font-bold text-slate-900 dark:text-white" for="holidayToggle">Holiday /
+                            Leave Mode</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="flex flex-col gap-8">
+                    <section class="card-section bg-white rounded-[2rem] border border-slate-100 p-6 shadow-sm">
+                        <h2 class="text-slate-900 dark:text-white text-xl font-bold mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">online_prediction</span>
+                            Availability Management
+                        </h2>
+                        <div class="grid grid-cols-1 gap-4">
+                            <!-- Available -->
+                            <div class="relative">
+                                <input checked="" class="peer sr-only" id="status-available" name="status" type="radio"
+                                    value="available" />
+                                <label
+                                    class="status-option flex items-center justify-between p-4 border-2 border-transparent rounded-lg cursor-pointer peer-checked:border-emerald-500 peer-checked:bg-emerald-50 transition-all"
+                                    style="background:rgba(255,255,255,0.5);" for="status-available">
+                                    <div class="flex items-center gap-3">
+                                        <!-- Available: always emerald green -->
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white">
+                                            <span class="material-symbols-outlined">check_circle</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-slate-900 dark:text-white">Available</p>
+                                            <p class="text-xs text-slate-500 dark:text-primary/70 italic">Students can
+                                                walk in</p>
+                                        </div>
+                                    </div>
+                                    <div class="peer-checked:block hidden">
+                                        <span class="material-symbols-outlined text-emerald-500">check</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="relative">
+                                <input class="peer sr-only" id="status-busy" name="status" type="radio" value="busy" />
+                                <label
+                                    class="status-option flex items-center justify-between p-4 border-2 border-transparent rounded-lg cursor-pointer peer-checked:border-yellow-400 peer-checked:bg-yellow-400/5 transition-all"
+                                    style="background:rgba(255,255,255,0.5);" for="status-busy">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center text-white">
+                                            <span class="material-symbols-outlined">schedule</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-slate-900 dark:text-white">Busy</p>
+                                            <p class="text-xs text-slate-500 dark:text-primary/70 italic">Please wait
+                                                outside</p>
+                                        </div>
+                                    </div>
+                                    <div class="peer-checked:block hidden">
+                                        <span class="material-symbols-outlined text-yellow-400">check</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="relative">
+                                <input class="peer sr-only" id="status-unavailable" name="status" type="radio"
+                                    value="unavailable" />
+                                <label
+                                    class="status-option flex items-center justify-between p-4 border-2 border-transparent rounded-lg cursor-pointer peer-checked:border-red-500 peer-checked:bg-red-500/5 transition-all"
+                                    style="background:rgba(255,255,255,0.5);" for="status-unavailable">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white">
+                                            <span class="material-symbols-outlined">block</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-slate-900 dark:text-white">Not Available</p>
+                                            <p class="text-xs text-slate-500 dark:text-primary/70 italic">Out of office
+                                                / In class</p>
+                                        </div>
+                                    </div>
+                                    <div class="peer-checked:block hidden">
+                                        <span class="material-symbols-outlined text-red-500">check</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">Status Message
+                                Update</label>
+                            <input
+                                class="input-field w-full rounded-lg border border-white/40 dark:border-white/10 dark:bg-white/5 dark:text-white px-4 py-3 focus:ring-primary focus:border-primary outline-none"
+                                placeholder="e.g., In a meeting until 3:00 PM" type="text" />
+                            <p class="mt-2 text-xs text-slate-500 dark:text-primary/60">This message will be visible to
+                                students in the app.</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <section class="card-section bg-white rounded-[2rem] border border-slate-100 p-6 shadow-sm">
+                        <h2 class="text-slate-900 dark:text-white text-xl font-bold mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">calendar_month</span>
+                            Timetable Upload
+                        </h2>
+                        <div id="uploadZone"
+                            class="upload-zone border-2 border-dashed border-slate-200 dark:border-white/20 rounded-xl p-8 flex flex-col items-center justify-center bg-slate-50 dark:bg-white/5 group cursor-pointer"
+                            onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)"
+                            ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+                            <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" class="hidden"
+                                onchange="handleFileSelect(event)" />
+                            <div
+                                class="size-14 bg-primary/20 rounded-full flex items-center justify-center text-primary mb-4">
+                                <span class="material-symbols-outlined text-3xl">upload_file</span>
+                            </div>
+                            <p class="text-slate-900 dark:text-white font-bold text-center">Drag and drop your weekly
+                                schedule</p>
+                            <p class="text-slate-500 dark:text-primary/70 text-sm text-center mt-1">Accepts PDF, JPG, or
+                                PNG (Max 5MB)</p>
+                            <button type="button"
+                                class="secondary-btn mt-4 px-4 py-2 bg-white dark:bg-white/10 border border-white/40 dark:border-white/20 rounded-lg text-sm font-bold text-slate-900 dark:text-white">
+                                Select File
+                            </button>
+                        </div>
+                        <div id="currentFileCard"
+                            class="hidden file-card mt-6 p-4 rounded-xl border border-slate-100 bg-slate-50">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span id="fileIcon"
+                                        class="material-symbols-outlined text-slate-500">picture_as_pdf</span>
+                                    <div>
+                                        <p id="fileName" class="text-sm font-bold text-slate-900 dark:text-white">No
+                                            file uploaded</p>
+                                        <p id="fileDate" class="text-xs text-slate-500 dark:text-primary/60">-</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="event.stopPropagation(); viewTimetable();"
+                                        class="header-btn p-2 rounded-lg bg-primary/10 text-primary" title="View">
+                                        <span class="material-symbols-outlined text-lg">visibility</span>
+                                    </button>
+                                    <button onclick="event.stopPropagation(); deleteTimetable();"
+                                        class="delete-btn text-slate-500" title="Delete">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="imagePreview" class="hidden mt-4">
+                                <img id="previewImg" src="" alt="Timetable preview"
+                                    class="w-full rounded-xl border border-slate-100" />
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div
+                class="mt-12 flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-white/40 dark:border-white/10 pt-8">
+                <p class="text-slate-500 dark:text-primary/60 text-sm">Last updated: Today at 09:42 AM</p>
+                <div class="flex gap-4">
+                    <button onclick="cancelChanges()"
+                        class="secondary-btn px-8 py-3 rounded-lg border border-white/40 dark:border-white/10 text-slate-900 dark:text-white font-bold hover:bg-white dark:hover:bg-white/10 transition-all">
+                        Cancel Changes
+                    </button>
+                    <button onclick="saveChanges()"
+                        class="primary-btn px-8 py-3 rounded-full bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        Save &amp; Update Details
+                    </button>
+                </div>
+            </div>
+            <footer class="mt-20 py-10 border-t border-white/40 dark:border-white/10 text-center">
+                <p class="text-sm text-slate-500 dark:text-primary/40">© 2024 CampusEase Faculty Management System. All
+                    rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <div id="settingsModal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'settingsModal')">
+        <div class="modal-content p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">settings</span>
+                    Profile Settings
+                </h2>
+                <button onclick="closeSettings()"
+                    class="header-btn p-2 rounded-lg bg-white/60 dark:bg-white/5 text-slate-500">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="settingsForm" class="space-y-4">
+                <div class="flex flex-col items-center mb-4">
+                    <label class="block text-sm font-bold text-slate-900 dark:text-white mb-3 w-full">Profile
+                        Picture</label>
+                    <div class="relative group cursor-pointer"
+                        onclick="document.getElementById('profilePicInput').click()">
+                        <input type="file" id="profilePicInput" accept="image/*" class="hidden"
+                            onchange="handleProfilePicUpload(event)" />
+                        <div id="profilePicPreview"
+                            class="w-24 h-24 rounded-full border-4 border-primary/30 bg-cover bg-center overflow-hidden"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqBpPgfpfv_WA1NNrB71i8IVWAXPLdys3DhL0YsZzmMIAGHiziq1Ss8QVQ9Va7RKZrHL1DYcg7ZL4ONjR4F4Q_8EKyv6wYJsswFbAdaJubPpP1ElRSKTYYjcVCJZb8K-Ov9h5Y4kw5pe5W_tM9-OaIgH8eLEGa22d-2A6SLKNOX1l_Bf9WqjPDvxLEapdDWGuoEe1rGDDOZfHWzU3ocF1r-REFJsMrafkeG_6aaJeOhqTH2itob_5bzZg1Z5VLDx0vtI6zfjgT0e8');">
+                        </div>
+                        <div
+                            class="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-2xl">photo_camera</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-primary/60 mt-2">Click to upload (Max 2MB)</p>
+                    <button type="button" id="removeProfilePic"
+                        onclick="event.stopPropagation(); removeProfilePicture();"
+                        class="hidden text-xs text-red-500 hover:underline mt-1">Remove Photo</button>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">Full Name</label>
+                    <input type="text" id="settingsName"
+                        class="input-field w-full rounded-lg border border-white/40 dark:border-white/10 dark:bg-white/5 dark:text-white px-4 py-3 outline-none"
+                        placeholder="Dr. Jane Smith" />
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">Department</label>
+                    <input type="text" id="settingsDept"
+                        class="input-field w-full rounded-lg border border-white/40 dark:border-white/10 dark:bg-white/5 dark:text-white px-4 py-3 outline-none"
+                        placeholder="Computer Science" />
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">Cabin Number</label>
+                    <input type="text" id="settingsCabin"
+                        class="input-field w-full rounded-lg border border-white/40 dark:border-white/10 dark:bg-white/5 dark:text-white px-4 py-3 outline-none"
+                        placeholder="B-302" />
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">Email Address</label>
+                    <input type="email" id="settingsEmail"
+                        class="input-field w-full rounded-lg border border-white/40 dark:border-white/10 dark:bg-white/5 dark:text-white px-4 py-3 outline-none"
+                        placeholder="jane.smith@campus.edu" />
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">Phone Number</label>
+                    <input type="tel" id="settingsPhone"
+                        class="input-field w-full rounded-lg border border-white/40 dark:border-white/10 dark:bg-white/5 dark:text-white px-4 py-3 outline-none"
+                        placeholder="+1 (555) 123-4567" />
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="button" onclick="closeSettings()"
+                        class="secondary-btn flex-1 px-4 py-3 rounded-lg border border-white/40 dark:border-white/10 text-slate-900 dark:text-white font-bold">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="saveSettings()"
+                        class="primary-btn flex-1 px-4 py-3 rounded-lg bg-primary text-white font-bold">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'calendarModal')">
+        <div class="modal-content p-6" style="max-width: 550px;">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">calendar_month</span>
+                    Calendar & Tasks
+                </h2>
+                <button onclick="closeCalendar()"
+                    class="header-btn p-2 rounded-lg bg-white/60 dark:bg-white/5 text-slate-500">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="flex items-center justify-between mb-4">
+                <button onclick="prevMonth()"
+                    class="header-btn p-2 rounded-lg bg-white/60 dark:bg-white/5 text-slate-900 dark:text-white">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <h3 id="calendarMonth" class="text-lg font-bold text-slate-900 dark:text-white">February 2026</h3>
+                <button onclick="nextMonth()"
+                    class="header-btn p-2 rounded-lg bg-white/60 dark:bg-white/5 text-slate-900 dark:text-white">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+            <div class="calendar-grid mb-2">
+                <div class="text-center text-xs font-bold text-slate-500 py-2">Sun</div>
+                <div class="text-center text-xs font-bold text-slate-500 py-2">Mon</div>
+                <div class="text-center text-xs font-bold text-slate-500 py-2">Tue</div>
+                <div class="text-center text-xs font-bold text-slate-500 py-2">Wed</div>
+                <div class="text-center text-xs font-bold text-slate-500 py-2">Thu</div>
+                <div class="text-center text-xs font-bold text-slate-500 py-2">Fri</div>
+                <div class="text-center text-xs font-bold text-slate-500 py-2">Sat</div>
+            </div>
+            <div id="calendarDays" class="calendar-grid">
+            </div>
+
+            <div id="taskSection" class="mt-4 pt-4 border-t border-white/40 dark:border-white/10">
+                <p class="text-sm text-slate-500 dark:text-primary/60 mb-3">Selected: <span id="selectedDate"
+                        class="font-bold text-slate-900 dark:text-white">Click a date to add tasks</span></p>
+
+                <div id="addTaskForm" class="hidden">
+                    <div class="flex gap-2 mb-3">
+                        <input type="text" id="taskInput"
+                            class="input-field flex-1 rounded-lg border border-white/40 dark:border-white/10 dark:bg-white/5 dark:text-white px-3 py-2 text-sm outline-none"
+                            placeholder="Enter task description..." onkeypress="if(event.key==='Enter') addTask()" />
+                        <button onclick="addTask()"
+                            class="primary-btn px-4 py-2 rounded-lg bg-primary text-white font-bold text-sm">
+                            <span class="material-symbols-outlined text-lg">add</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="tasksList" class="space-y-2 max-h-40 overflow-y-auto">
+                    <p class="text-sm text-slate-500/60 dark:text-white/30 text-center py-2">Select a date to view and
+                        add tasks</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/data.js"></script>
+    <script>
+        const session = CabinConnect.requireAuth(['faculty']);
+
+        // ── Load real faculty data on page init ──────────────────────────────────
+        async function initFacultyPortal() {
+            if (!session || !session.facultyId) return;
+            const member = await CabinConnect.getFacultyById(session.facultyId);
+            if (!member) return;
+
+            // Profile card
+            const nameEl = document.getElementById('profileName');
+            const deptEl = document.getElementById('profileDept');
+            const cabinEl = document.getElementById('profileCabin');
+            const avatarMain = document.getElementById('profileAvatarMain');
+            const headerAvatar = document.getElementById('headerAvatar');
+
+            if (nameEl) nameEl.textContent = member.name;
+            if (deptEl) deptEl.textContent = member.department;
+            if (cabinEl) cabinEl.textContent = member.cabin;
+
+            const localSettings = JSON.parse(localStorage.getItem('faculty_settings') || '{}');
+            const avatarUrl = localSettings.profilePic || member.image;
+            if (avatarMain) avatarMain.style.backgroundImage = `url('${avatarUrl}')`;
+            if (headerAvatar) headerAvatar.style.backgroundImage = `url('${avatarUrl}')`;
+
+            // Pre-select status radio
+            if (member.status) {
+                const radio = document.getElementById(`status-${member.status}`);
+                if (radio) radio.checked = true;
+            }
+
+            // Pre-fill holiday toggle
+            const holidayToggle = document.getElementById('holidayToggle');
+            if (holidayToggle) holidayToggle.checked = !!member.onHoliday;
+
+            // Pre-fill status message
+            const msgInput = document.querySelector('input[placeholder*="meeting"]');
+            if (msgInput && member.statusMessage) msgInput.value = member.statusMessage;
+        }
+
+        initFacultyPortal();
+
+        function logout() {
+            CabinConnect.logout();
+            window.location.href = '/login/login.html';
+        }
+
+        function getSelectedStatus() {
+            const radios = document.querySelectorAll('input[name="status"]');
+            for (const radio of radios) {
+                if (radio.checked) return radio.value;
+            }
+            return 'available';
+        }
+
+        function getStatusMessage() {
+            const input = document.querySelector('input[placeholder*="meeting"]');
+            return input ? input.value : '';
+        }
+
+        function isHolidayMode() {
+            const toggle = document.getElementById('holidayToggle');
+            return toggle ? toggle.checked : false;
+        }
+
+        async function saveChanges() {
+            if (session && session.facultyId) {
+                const status = getSelectedStatus();
+                const statusMessage = getStatusMessage();
+                const onHoliday = isHolidayMode();
+
+                const result = await CabinConnect.updateFacultyStatus(session.facultyId, status, statusMessage, onHoliday);
+                if (result.success) {
+                    showToast('Status updated successfully!', 'success');
+                } else {
+                    showToast('Failed to update status. Please try again.', 'error');
+                }
+            }
+        }
+
+        function cancelChanges() {
+            window.location.reload();
+        }
+
+        function openSettings() {
+            document.getElementById('settingsModal').classList.add('active');
+            loadSettings();
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').classList.remove('active');
+        }
+
+        async function loadSettings() {
+            if (session && session.facultyId) {
+                const member = await CabinConnect.getFacultyById(session.facultyId);
+                if (member) {
+                    document.getElementById('settingsName').value = member.name || '';
+                    document.getElementById('settingsDept').value = member.department || '';
+                    document.getElementById('settingsCabin').value = member.cabin || '';
+                    document.getElementById('settingsEmail').value = member.email || '';
+                    document.getElementById('settingsPhone').value = member.phone || '';
+
+                    const profilePicEl = document.getElementById('profilePicPreview');
+                    profilePicEl.style.backgroundImage = `url('${member.image}')`;
+
+                    const localSettings = JSON.parse(localStorage.getItem('faculty_settings') || '{}');
+                    document.getElementById('removeProfilePic').classList.toggle('hidden', !localSettings.profilePic);
+                    return;
+                }
+            }
+            const settings = JSON.parse(localStorage.getItem('faculty_settings') || '{}');
+            document.getElementById('settingsName').value = settings.name || '';
+            document.getElementById('settingsDept').value = settings.department || '';
+            document.getElementById('settingsCabin').value = settings.cabin || '';
+            document.getElementById('settingsEmail').value = settings.email || '';
+            document.getElementById('settingsPhone').value = settings.phone || '';
+            const defaultImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAqBpPgfpfv_WA1NNrB71i8IVWAXPLdys3DhL0YsZzmMIAGHiziq1Ss8QVQ9Va7RKZrHL1DYcg7ZL4ONjR4F4Q_8EKyv6wYJsswFbAdaJubPpP1ElRSKTYYjcVCJZb8K-Ov9h5Y4kw5pe5W_tM9-OaIgH8eLEGa22d-2A6SLKNOX1l_Bf9WqjPDvxLEapdDWGuoEe1rGDDOZfHWzU3ocF1r-REFJsMrafkeG_6aaJeOhqTH2itob_5bzZg1Z5VLDx0vtI6zfjgT0e8';
+            document.getElementById('profilePicPreview').style.backgroundImage = `url('${settings.profilePic || defaultImg}')`;
+            document.getElementById('removeProfilePic').classList.toggle('hidden', !settings.profilePic);
+        }
+
+        async function saveSettings() {
+            if (!session || !session.facultyId) return;
+
+            const profileData = {
+                name: document.getElementById('settingsName').value,
+                department: document.getElementById('settingsDept').value,
+                cabin: document.getElementById('settingsCabin').value,
+                email: document.getElementById('settingsEmail').value,
+                phone: document.getElementById('settingsPhone').value
+            };
+
+            const localSettings = JSON.parse(localStorage.getItem('faculty_settings') || '{}');
+            if (localSettings.profilePic) {
+                profileData.image = localSettings.profilePic;
+            }
+
+            const result = await CabinConnect.updateFacultyProfile(session.facultyId, profileData);
+
+            if (result.success) {
+                localStorage.setItem('faculty_settings', JSON.stringify({ ...localSettings, ...profileData }));
+                closeSettings();
+                showToast('Profile settings saved successfully!', 'success');
+                updateProfileDisplay(profileData);
+            } else {
+                showToast('Failed to save settings. Please try again.', 'error');
+            }
+        }
+
+        function updateFacultyData(settings) {
+
+        }
+
+        function updateProfileDisplay(settings) {
+            const nameEl = document.querySelector('h3.text-2xl');
+            const deptEl = document.querySelector('p.text-slate-500.text-base');
+            if (nameEl) nameEl.textContent = settings.name;
+            if (deptEl) deptEl.textContent = settings.department;
+
+            if (settings.profilePic) {
+                const avatars = document.querySelectorAll('.profile-avatar');
+                avatars.forEach(avatar => {
+                    avatar.style.backgroundImage = `url('${settings.profilePic}')`;
+                });
+            }
+        }
+
+        function handleProfilePicUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Image too large. Maximum size is 2MB.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imageData = e.target.result;
+
+                document.getElementById('profilePicPreview').style.backgroundImage = `url('${imageData}')`;
+                document.getElementById('removeProfilePic').classList.remove('hidden');
+
+                const settings = JSON.parse(localStorage.getItem('faculty_settings') || '{}');
+                settings.profilePic = imageData;
+                try {
+                    localStorage.setItem('faculty_settings', JSON.stringify(settings));
+                    updateProfileDisplay(settings);
+                    updateFacultyData(settings);
+                } catch (error) {
+                    alert('Image too large to save. Please use a smaller image.');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeProfilePicture() {
+            const settings = JSON.parse(localStorage.getItem('faculty_settings') || '{}');
+            delete settings.profilePic;
+            localStorage.setItem('faculty_settings', JSON.stringify(settings));
+
+            if (session && session.facultyId) {
+                CabinConnect.getFacultyById(session.facultyId).then(member => {
+                    if (member) {
+                        document.getElementById('profilePicPreview').style.backgroundImage = `url('${member.image}')`;
+                    }
+                });
+            }
+
+            document.getElementById('removeProfilePic').classList.add('hidden');
+            document.getElementById('profilePicInput').value = '';
+        }
+
+        let currentDate = new Date();
+        let selectedDate = null;
+        let calendarTasks = JSON.parse(localStorage.getItem('calendar_tasks') || '{}');
+
+        function showToast(message, type = 'success') {
+            const existing = document.getElementById('cc-toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.id = 'cc-toast';
+            const bg = type === 'success' ? 'bg-primary text-white' : 'bg-red-500 text-white';
+            toast.className = `fixed bottom-6 right-6 z-[200] px-5 py-3 rounded-xl font-bold shadow-xl flex items-center gap-2 transition-all ${bg}`;
+            toast.innerHTML = `<span class="material-symbols-outlined">${type === 'success' ? 'check_circle' : 'error'}</span>${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function getDateKey(date) {
+            return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        }
+
+        function openCalendar() {
+            document.getElementById('calendarModal').classList.add('active');
+            renderCalendar();
+        }
+
+        function closeCalendar() {
+            document.getElementById('calendarModal').classList.remove('active');
+        }
+
+        function prevMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const today = new Date();
+
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'];
+            document.getElementById('calendarMonth').textContent = `${monthNames[month]} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            let html = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                html += '<div class="calendar-day text-[#ccc] dark:text-white/20"></div>';
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateObj = new Date(year, month, day);
+                const dateKey = getDateKey(dateObj);
+                const isToday = today.getDate() === day && today.getMonth() === month && today.getFullYear() === year;
+                const isSelected = selectedDate && selectedDate.getDate() === day && selectedDate.getMonth() === month && selectedDate.getFullYear() === year;
+                const hasTasks = calendarTasks[dateKey] && calendarTasks[dateKey].length > 0;
+
+                let classes = 'calendar-day text-slate-900 dark:text-white';
+                if (isToday) classes += ' today';
+                if (isSelected) classes += ' selected';
+                if (hasTasks) classes += ' has-tasks';
+                html += `<div class="${classes}" onclick="selectDate(${year}, ${month}, ${day})">${day}</div>`;
+            }
+
+            document.getElementById('calendarDays').innerHTML = html;
+        }
+
+        function selectDate(year, month, day) {
+            selectedDate = new Date(year, month, day);
+            const formatted = selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('selectedDate').textContent = formatted;
+            document.getElementById('addTaskForm').classList.remove('hidden');
+            renderCalendar();
+            renderTasks();
+        }
+
+        function renderTasks() {
+            if (!selectedDate) {
+                document.getElementById('tasksList').innerHTML = '<p class="text-sm text-slate-500/60 dark:text-white/30 text-center py-2">Select a date to view and add tasks</p>';
+                return;
+            }
+
+            const dateKey = getDateKey(selectedDate);
+            const tasks = calendarTasks[dateKey] || [];
+
+            if (tasks.length === 0) {
+                document.getElementById('tasksList').innerHTML = '<p class="text-sm text-slate-500/60 dark:text-white/30 text-center py-2">No tasks for this day</p>';
+                return;
+            }
+
+            let html = '';
+            tasks.forEach((task, index) => {
+                html += `
+                    <div class="task-item flex items-center justify-between p-2 rounded-lg border border-white/40 dark:border-white/10">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-sm">task_alt</span>
+                            <span class="text-sm text-slate-900 dark:text-white">${task}</span>
+                        </div>
+                        <button onclick="deleteTask(${index})" class="task-delete text-slate-500 transition-all">
+                            <span class="material-symbols-outlined text-lg">close</span>
+                        </button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('tasksList').innerHTML = html;
+        }
+
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const taskText = input.value.trim();
+
+            if (!taskText || !selectedDate) return;
+
+            const dateKey = getDateKey(selectedDate);
+            if (!calendarTasks[dateKey]) {
+                calendarTasks[dateKey] = [];
+            }
+            calendarTasks[dateKey].push(taskText);
+            localStorage.setItem('calendar_tasks', JSON.stringify(calendarTasks));
+
+            input.value = '';
+            renderCalendar();
+            renderTasks();
+        }
+
+        function deleteTask(index) {
+            if (!selectedDate) return;
+
+            const dateKey = getDateKey(selectedDate);
+            if (calendarTasks[dateKey]) {
+                calendarTasks[dateKey].splice(index, 1);
+                if (calendarTasks[dateKey].length === 0) {
+                    delete calendarTasks[dateKey];
+                }
+                localStorage.setItem('calendar_tasks', JSON.stringify(calendarTasks));
+                renderCalendar();
+                renderTasks();
+            }
+        }
+
+        function closeModalOnOverlay(event, modalId) {
+            if (event.target.id === modalId) {
+                document.getElementById(modalId).classList.remove('active');
+            }
+        }
+
+        window.addEventListener('load', function () {
+            loadSettings();
+            loadTimetable();
+        });
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById('uploadZone').classList.add('border-primary', 'bg-primary/10');
+        }
+
+        function handleDragLeave(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById('uploadZone').classList.remove('border-primary', 'bg-primary/10');
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById('uploadZone').classList.remove('border-primary', 'bg-primary/10');
+
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
+        }
+
+        function handleFileSelect(event) {
+            const files = event.target.files;
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
+        }
+
+        function processFile(file) {
+            const validTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+            if (!validTypes.includes(file.type)) {
+                alert('Invalid file type. Please upload PDF, JPG, or PNG files only.');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('File too large. Maximum size is 5MB.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const timetableData = {
+                    name: file.name,
+                    type: file.type,
+                    size: file.size,
+                    data: e.target.result,
+                    uploadDate: new Date().toISOString()
+                };
+
+                try {
+                    localStorage.setItem('faculty_timetable', JSON.stringify(timetableData));
+                    loadTimetable();
+                    alert('Timetable uploaded successfully!');
+                } catch (error) {
+                    if (error.name === 'QuotaExceededError') {
+                        alert('File too large to store. Please use a smaller file.');
+                    } else {
+                        alert('Error saving file. Please try again.');
+                    }
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function loadTimetable() {
+            const timetableData = JSON.parse(localStorage.getItem('faculty_timetable') || 'null');
+            const cardEl = document.getElementById('currentFileCard');
+            const previewEl = document.getElementById('imagePreview');
+
+            if (timetableData) {
+                cardEl.classList.remove('hidden');
+                document.getElementById('fileName').textContent = timetableData.name;
+
+                const uploadDate = new Date(timetableData.uploadDate);
+                const now = new Date();
+                const diffDays = Math.floor((now - uploadDate) / (1000 * 60 * 60 * 24));
+                let dateText = '';
+                if (diffDays === 0) dateText = 'Uploaded today';
+                else if (diffDays === 1) dateText = 'Uploaded yesterday';
+                else dateText = `Uploaded ${diffDays} days ago`;
+                document.getElementById('fileDate').textContent = dateText;
+
+                const iconEl = document.getElementById('fileIcon');
+                if (timetableData.type === 'application/pdf') {
+                    iconEl.textContent = 'picture_as_pdf';
+                    previewEl.classList.add('hidden');
+                } else {
+                    iconEl.textContent = 'image';
+                    previewEl.classList.remove('hidden');
+                    document.getElementById('previewImg').src = timetableData.data;
+                }
+            } else {
+                cardEl.classList.add('hidden');
+                previewEl.classList.add('hidden');
+            }
+        }
+
+        function viewTimetable() {
+            const timetableData = JSON.parse(localStorage.getItem('faculty_timetable') || 'null');
+            if (timetableData) {
+                const newWindow = window.open();
+                if (timetableData.type === 'application/pdf') {
+                    newWindow.document.write(`<iframe src="${timetableData.data}" style="width:100%;height:100vh;border:none;"></iframe>`);
+                } else {
+                    newWindow.document.write(`<img src="${timetableData.data}" style="max-width:100%;height:auto;" />`);
+                }
+                newWindow.document.title = timetableData.name;
+            }
+        }
+
+        function deleteTimetable() {
+            // Remove from localStorage immediately (no confirm() to avoid click-event conflicts)
+            localStorage.removeItem('faculty_timetable');
+
+            // Reset the file input
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput) fileInput.value = '';
+
+            // Hide the card and image preview directly
+            const cardEl = document.getElementById('currentFileCard');
+            const previewEl = document.getElementById('imagePreview');
+            if (cardEl) cardEl.classList.add('hidden');
+            if (previewEl) previewEl.classList.add('hidden');
+
+            // Clear displayed values
+            const fileNameEl = document.getElementById('fileName');
+            const fileDateEl = document.getElementById('fileDate');
+            if (fileNameEl) fileNameEl.textContent = 'No file uploaded';
+            if (fileDateEl) fileDateEl.textContent = '-';
+
+            showToast('Timetable deleted successfully.', 'success');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CabinConnect - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Unkempt:wght@400;700&family=Notable&family=Original+Surfer&family=Funnel+Display:wght@300;400;500;600;700&family=Alfa+Slab+One&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            background: #f0f4f8;
+            overflow: hidden;
+        }
+
+        @keyframes bgShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* ══════════════════════════════════════
+           SPLIT-SCREEN LAYOUT
+        ══════════════════════════════════════ */
+        .split-screen {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Accent triangle wedge — fills the gap between diagonal and login panel */
+        .split-screen::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 38%;
+            width: 14%;
+            height: 100%;
+            background: linear-gradient(165deg, #818cf8 0%, #6366f1 40%, #a855f7 100%);
+            clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);
+            z-index: 1;
+            opacity: 0.85;
+            pointer-events: none;
+        }
+
+        /* ── Brand Panel (Left) ── */
+        .brand-panel {
+            width: 48%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #312e81, #1e1b4b);
+            background-size: 300% 300%;
+            animation: brandShift 10s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+        }
+
+        @keyframes brandShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .brand-content {
+            text-align: center;
+            z-index: 2;
+            padding: 40px;
+            /* Center within the visible (non-clipped) area */
+            margin-right: 12%;
+            animation: brandFadeIn 0.8s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes brandFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .brand-name {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 76px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.05;
+            letter-spacing: -3px;
+        }
+
+        .brand-name span {
+            display: inline;
+            background: linear-gradient(135deg, #fb923c, #ec4899, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-tagline {
+            font-family: "Funnel Display", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 16px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+
+
+        /* Floating decorative shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            width: 280px;
+            height: 280px;
+            background: #818cf8;
+            top: -80px;
+            right: -40px;
+            animation: shapeFloat1 12s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: #fb923c;
+            bottom: 10%;
+            left: -60px;
+            animation: shapeFloat2 10s ease-in-out infinite;
+        }
+
+        .shape-3 {
+            width: 140px;
+            height: 140px;
+            background: #ec4899;
+            bottom: -40px;
+            right: 20%;
+            animation: shapeFloat3 14s ease-in-out infinite;
+        }
+
+        @keyframes shapeFloat1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-20px, 30px) scale(1.08);
+            }
+        }
+
+        @keyframes shapeFloat2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(15px, -20px) scale(1.1);
+            }
+        }
+
+        @keyframes shapeFloat3 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-10px, -15px) scale(1.06);
+            }
+        }
+
+        /* Subtle grid pattern overlay */
+        .brand-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Glowing accent line at the diagonal edge */
+        .brand-panel::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #818cf8, #ec4899, #fb923c, transparent);
+            opacity: 0.4;
+            z-index: 3;
+            pointer-events: none;
+            /* Position along the diagonal edge */
+            transform-origin: top right;
+            transform: rotate(0deg);
+        }
+
+        /* ── Login Panel (Right) ── */
+        .login-panel {
+            flex: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #dbeafe, #fce7f3, #fde68a, #dbeafe);
+            background-size: 300% 300%;
+            animation: bgShift 12s ease infinite;
+            padding: 24px 28px;
+            overflow-y: auto;
+            z-index: 2;
+        }
+
+        /* ── Outer card ── */
+        .main {
+            width: 100%;
+            max-width: 560px;
+            background: white;
+            border-radius: 26px;
+            padding: 40px 46px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.09);
+            position: relative;
+            overflow: hidden;
+            margin: auto;
+        }
+
+        /* Decorative blobs */
+        .main::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: #fbcfe8;
+            border-radius: 50%;
+            top: -70px;
+            right: -70px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .main::after {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            background: #bfdbfe;
+            border-radius: 50%;
+            bottom: -90px;
+            left: -90px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* ── Header ── */
+        .header {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .header h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e293b 0%, #475569 50%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 400;
+            color: #94a3b8;
+            margin-top: 2px;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── Role toggle ── */
+        .toggle {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 26px;
+        }
+
+        .toggle button {
+            padding: 14px 38px;
+            border-radius: 16px;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: "Original Surfer", sans-serif;
+        }
+
+        .toggle button#studentBtn {
+            background: #f1f5f9;
+            color: #475569;
+            box-shadow: none;
+        }
+
+        .toggle button#studentBtn.active {
+            background: linear-gradient(135deg, #fb923c, #ec4899);
+            color: white;
+            box-shadow: 0 10px 22px rgba(236, 72, 153, 0.28);
+        }
+
+        .toggle button#facultyBtn {
+            background: #f1f5f9;
+            color: #475569;
+            box-shadow: none;
+        }
+
+        .toggle button#facultyBtn.active {
+            background: linear-gradient(135deg, #3b82f6, #2b8cee);
+            color: white;
+            box-shadow: 0 10px 22px rgba(43, 140, 238, 0.32);
+        }
+
+        /* ── Form ── */
+        form {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .field-label {
+            display: block;
+            margin-bottom: 7px;
+            color: #334155;
+            font-weight: 500;
+            font-size: 14px;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        .input-wrap {
+            position: relative;
+            margin-bottom: 18px;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Lift the whole field group on focus */
+        .input-wrap:focus-within {
+            transform: translateY(-2px);
+        }
+
+        .input-wrap .mat-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 20px;
+            transition: color 0.2s, transform 0.2s;
+            font-family: 'Material Symbols Outlined';
+            user-select: none;
+        }
+
+        /* Student mode — pink icon */
+        .input-wrap:focus-within .mat-icon {
+            color: #ec4899;
+            transform: translateY(-50%) scale(1.15);
+        }
+
+        /* Faculty mode — blue icon */
+        body.faculty-mode .input-wrap:focus-within .mat-icon {
+            color: #2b8cee;
+        }
+
+        .input-wrap input {
+            width: 100%;
+            padding: 15px 16px 15px 48px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            font-size: 15px;
+            color: #1e293b;
+            background: white;
+            /* subtle inner highlight + soft outer shadow at rest */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04),
+                0 2px 6px rgba(0, 0, 0, 0.04);
+            transition: border-color 0.22s, box-shadow 0.22s, background 0.22s;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        /* Hover — warm highlight lift */
+        .input-wrap input:hover {
+            border-color: #cbd5e1;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04),
+                0 4px 14px rgba(0, 0, 0, 0.07);
+            background: #fafcff;
+        }
+
+        /* Student focus — pink glow */
+        .input-wrap input:focus {
+            outline: none;
+            border-color: #ec4899;
+            background: #fff9fc;
+            box-shadow: inset 0 1px 2px rgba(236, 72, 153, 0.06),
+                0 0 0 4px rgba(236, 72, 153, 0.12),
+                0 6px 20px rgba(236, 72, 153, 0.08);
+        }
+
+        /* Faculty focus — blue glow */
+        body.faculty-mode .input-wrap input:focus {
+            border-color: #2b8cee;
+            background: #f8fbff;
+            box-shadow: inset 0 1px 2px rgba(43, 140, 238, 0.06),
+                0 0 0 4px rgba(43, 140, 238, 0.12),
+                0 6px 20px rgba(43, 140, 238, 0.08);
+        }
+
+        .input-wrap input::placeholder {
+            color: #94a3b8;
+        }
+
+        /* eye toggle */
+        .eye-btn {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #94a3b8;
+            font-family: 'Material Symbols Outlined';
+            font-size: 20px;
+            transition: color 0.2s;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .eye-btn:hover {
+            color: #ec4899;
+        }
+
+        body.faculty-mode .eye-btn:hover {
+            color: #2b8cee;
+        }
+
+        /* ── Row (remember / forgot) ── */
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 13.5px;
+        }
+
+        .row label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #64748b;
+            cursor: pointer;
+            font-weight: 400;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        .row label input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            accent-color: #ec4899;
+            cursor: pointer;
+        }
+
+        body.faculty-mode .row label input[type="checkbox"] {
+            accent-color: #2b8cee;
+        }
+
+        .row a {
+            color: #f97316;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s, opacity 0.2s;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        .row a:hover {
+            opacity: 0.75;
+        }
+
+        body.faculty-mode .row a {
+            color: #2b8cee;
+        }
+
+        /* ── Error ── */
+        .error-box {
+            display: none;
+            background: #fff1f2;
+            border: 1.5px solid #fecdd3;
+            border-radius: 14px;
+            padding: 11px 14px;
+            color: #e11d48;
+            font-size: 13px;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        .error-box.visible {
+            display: flex;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-5px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.45s ease-in-out;
+        }
+
+        /* ── Sign-in button ── */
+        .login-btn {
+            width: 100%;
+            padding: 17px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #fb923c, #ec4899);
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 26px rgba(236, 72, 153, 0.28);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px rgba(236, 72, 153, 0.38);
+        }
+
+        body.faculty-mode .login-btn {
+            background: linear-gradient(135deg, #3b82f6, #2b8cee);
+            box-shadow: 0 10px 26px rgba(43, 140, 238, 0.28);
+        }
+
+        body.faculty-mode .login-btn:hover {
+            box-shadow: 0 16px 36px rgba(43, 140, 238, 0.38);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-btn .mat-icon {
+            font-family: 'Material Symbols Outlined';
+            font-size: 20px;
+        }
+
+        /* ── Demo accounts section ── */
+        .demo-section {
+            max-width: 440px;
+            margin: 20px auto 0;
+        }
+
+        .demo-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .demo-divider .line {
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        .demo-divider span {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            white-space: nowrap;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        #demoList {
+            max-height: 120px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        #demoList::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #demoList::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #demoList::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 99px;
+        }
+
+        .demo-category {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #94a3b8;
+            margin-top: 4px;
+            padding: 0 2px;
+        }
+
+        .demo-item {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1.5px solid #f1f5f9;
+            background: #fafafa;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .demo-item:hover {
+            background: #fff0f8;
+            border-color: #fbcfe8;
+        }
+
+        .demo-item .name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #1e293b;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        .demo-item .name.faculty-name {
+            color: #ec4899;
+        }
+
+        .demo-item .email {
+            font-size: 10px;
+            color: #94a3b8;
+            font-family: "Funnel Display", sans-serif;
+        }
+
+        .demo-item .pwd {
+            font-size: 10px;
+            font-family: monospace;
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 2px 8px;
+            border-radius: 99px;
+            white-space: nowrap;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            margin-top: 18px;
+            color: #64748b;
+            font-size: 13px;
+            font-family: "Alfa Slab One", serif;
+            font-weight: 400;
+        }
+
+        .footer span {
+            color: #f97316;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ══════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .split-screen {
+                flex-direction: column;
+            }
+
+            .brand-panel {
+                width: 100%;
+                min-height: auto;
+                padding: 40px 30px 50px;
+                clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            }
+
+            .brand-name {
+                font-size: 36px;
+            }
+
+            .brand-tagline {
+                font-size: 12px;
+            }
+
+            .login-panel {
+                min-height: auto;
+                padding: 30px 16px 40px;
+            }
+
+            .main {
+                padding: 40px 24px 36px;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            .toggle button {
+                padding: 11px 24px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-panel {
+                padding: 30px 20px 40px;
+            }
+
+            .brand-name {
+                font-size: 28px;
+            }
+
+            .brand-version {
+                display: none;
+            }
+
+            .main {
+                padding: 32px 18px 28px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+        }
+
+        /* ══════════════════════════════════════
+           ANIMATIONS
+        ══════════════════════════════════════ */
+
+        /* 2 ── Card entrance: slide up + fade in */
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .main {
+            animation: cardIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        /* 3 ── Staggered content fade-up for child elements */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            animation: fadeUp 0.5s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .toggle {
+            animation: fadeUp 0.5s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        form {
+            animation: fadeUp 0.5s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .demo-section {
+            animation: fadeUp 0.5s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .footer {
+            animation: fadeUp 0.5s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        /* 4 ── Blobs gently float */
+        @keyframes blobFloat1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-14px, 10px) scale(1.06);
+            }
+        }
+
+        @keyframes blobFloat2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(10px, -12px) scale(1.05);
+            }
+        }
+
+        .main::before {
+            animation: blobFloat1 8s ease-in-out infinite;
+        }
+
+        .main::after {
+            animation: blobFloat2 10s ease-in-out infinite;
+        }
+
+        /* 5 ── Role toggle bounce on activation */
+        @keyframes btnPop {
+            0% {
+                transform: scale(1);
+            }
+
+            40% {
+                transform: scale(0.92);
+            }
+
+            70% {
+                transform: scale(1.06);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .toggle button.active {
+            animation: btnPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* 6 ── Input field label "pop" when typing starts */
+        .field-label {
+            transition: color 0.2s, transform 0.2s;
+            display: block;
+        }
+
+        .input-wrap:focus-within+.input-wrap .field-label,
+        form:focus-within .field-label {
+            transform: translateX(2px);
+        }
+
+        /* 7 ── Button ripple overlay */
+        .login-btn {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.45);
+            transform: scale(0);
+            animation: rippleAnim 0.55s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rippleAnim {
+            to {
+                transform: scale(28);
+                opacity: 0;
+            }
+        }
+
+        /* 8 ── Demo items stagger in after load */
+        @keyframes itemSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .demo-item {
+            animation: itemSlide 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        /* 9 ── Subtle pulse on the card shadow to feel "alive" */
+        @keyframes shadowPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.09);
+            }
+
+            50% {
+                box-shadow: 0 28px 80px rgba(236, 72, 153, 0.08), 0 20px 60px rgba(0, 0, 0, 0.07);
+            }
+        }
+
+        .main {
+            animation: cardIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both,
+                shadowPulse 6s 1s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="split-screen">
+
+        <!-- ── Brand Panel (Left) ── -->
+        <div class="brand-panel">
+            <div class="brand-content">
+                <h2 class="brand-name">Cabin<span>Connect</span></h2>
+                <p class="brand-tagline">Faculty Management System</p>
+            </div>
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <!-- ── Login Panel (Right) ── -->
+        <div class="login-panel">
+            <div class="main">
+
+                <!-- Header -->
+                <div class="header">
+                    <h1>Welcome back!</h1>
+                    <p>Sign in to your CabinConnect account</p>
+                </div>
+
+                <!-- Role toggle -->
+                <div class="toggle">
+                    <button id="studentBtn" class="active" onclick="selectRole('student')">Student</button>
+                    <button id="facultyBtn" onclick="selectRole('faculty')">Faculty</button>
+                </div>
+
+                <!-- Login form -->
+                <form id="loginForm" onsubmit="handleLogin(event)">
+
+                    <!-- Email -->
+                    <label class="field-label">Email Address</label>
+                    <div class="input-wrap">
+                        <span class="mat-icon">mail</span>
+                        <input type="email" id="email" placeholder="your.email@campus.edu" required />
+                    </div>
+
+                    <!-- Password -->
+                    <label class="field-label">Password</label>
+                    <div class="input-wrap">
+                        <span class="mat-icon">lock</span>
+                        <input type="password" id="password" placeholder="Enter your password" required />
+                        <button type="button" class="eye-btn" onclick="togglePassword()">
+                            <span id="toggleIcon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg></span>
+                        </button>
+                    </div>
+
+                    <!-- Remember / Forgot -->
+                    <div class="row">
+                        <label><input type="checkbox" /> Remember me</label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+
+                    <!-- Error message -->
+                    <div id="errorMessage" class="error-box">
+                        <span class="mat-icon"
+                            style="font-family:'Material Symbols Outlined';font-size:17px;">error</span>
+                        <span id="errorText">Invalid credentials</span>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="login-btn">
+                        <span class="mat-icon">login</span>
+                        Sign In
+                    </button>
+
+                </form>
+
+                <!-- Demo accounts -->
+                <div class="demo-section">
+                    <div class="demo-divider">
+                        <div class="line"></div>
+                        <span>Demo Accounts — click to fill</span>
+                        <div class="line"></div>
+                    </div>
+                    <div id="demoList">
+                        <p style="color:#94a3b8;text-align:center;font-size:12px;padding:8px 0;">Loading accounts…</p>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    © 2025 CabinConnect Faculty Management System. All rights reserved.
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../shared/data.js"></script>
+    <script>
+        let selectedRole = 'student';
+
+        function selectRole(role) {
+            selectedRole = role;
+            const studentBtn = document.getElementById('studentBtn');
+            const facultyBtn = document.getElementById('facultyBtn');
+            if (role === 'student') {
+                studentBtn.classList.add('active');
+                facultyBtn.classList.remove('active');
+                document.body.classList.remove('faculty-mode');
+            } else {
+                facultyBtn.classList.add('active');
+                studentBtn.classList.remove('active');
+                document.body.classList.add('faculty-mode');
+            }
+        }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            const eyeOpen = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+            const eyeClosed = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.innerHTML = eyeClosed;
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.innerHTML = eyeOpen;
+            }
+        }
+
+        function fillDemo(role, email, password) {
+            selectRole(role);
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+        }
+
+        async function loadDemoAccounts() {
+            const container = document.getElementById('demoList');
+            try {
+                const res = await fetch(`${CabinConnect.BASE_URL}/api/users`);
+                const data = await res.json();
+                let html = '';
+
+                html += `<div class="demo-category">Students</div>`;
+                data.students.forEach(u => {
+                    html += `
+                        <div class="demo-item" onclick="fillDemo('student','${u.email}','${u.password}')">
+                            <div>
+                                <div class="name">${u.name}</div>
+                                <div class="email">${u.email}</div>
+                            </div>
+                            <span class="pwd">${u.password}</span>
+                        </div>`;
+                });
+
+                html += `<div class="demo-category" style="margin-top:8px;">Faculty</div>`;
+                data.faculty.forEach(u => {
+                    html += `
+                        <div class="demo-item" onclick="fillDemo('faculty','${u.email}','${u.password}')">
+                            <div>
+                                <div class="name faculty-name">${u.name}</div>
+                                <div class="email">${u.email}</div>
+                            </div>
+                            <span class="pwd">${u.password}</span>
+                        </div>`;
+                });
+
+                container.innerHTML = html;
+            } catch (e) {
+                container.innerHTML = `<p style="color:#e11d48;text-align:center;font-size:12px;padding:8px 0;">⚠ Could not load demo accounts. Is the server running?</p>`;
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            errorText.textContent = message;
+            errorDiv.classList.add('visible');
+            errorDiv.classList.add('shake');
+            setTimeout(() => errorDiv.classList.remove('shake'), 500);
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').classList.remove('visible');
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            hideError();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span class="mat-icon" style="font-size:18px;font-family:'Material Symbols Outlined'">autorenew</span> Signing in…`;
+
+            const result = await CabinConnect.login(email, password, selectedRole);
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<span class="mat-icon" style="font-family:'Material Symbols Outlined';font-size:20px;">login</span> Sign In 🚀`;
+
+            if (result.success) {
+                if (selectedRole === 'student') {
+                    window.location.href = '/student_portal/student_portal.html';
+                } else {
+                    window.location.href = '/cabinconnect_faculty_portal_management/code.html';
+                }
+            } else {
+                showError(result.error || 'Invalid email or password. Please try again.');
+            }
+        }
+
+        if (CabinConnect.isAuthenticated()) {
+            const session = CabinConnect.getSession();
+            if (session.role === 'student') {
+                window.location.href = '/student_portal/student_portal.html';
+            } else {
+                window.location.href = '/cabinconnect_faculty_portal_management/code.html';
+            }
+        }
+
+        loadDemoAccounts();
+
+        /* ── Ripple on Sign In button ── */
+        document.querySelector('.login-btn').addEventListener('click', function (e) {
+            const btn = this;
+            const rect = btn.getBoundingClientRect();
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = (e.clientX - rect.left - 5) + 'px';
+            ripple.style.top = (e.clientY - rect.top - 5) + 'px';
+            btn.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove());
+        });
+
+        /* ── Stagger demo items on load ── */
+        const origLoad = loadDemoAccounts;
+        async function loadDemoAccountsAnimated() {
+            await origLoad();
+            document.querySelectorAll('.demo-item').forEach((el, i) => {
+                el.style.animationDelay = (i * 0.045) + 's';
+            });
+        }
+        loadDemoAccountsAnimated();
+    </script>
+
+</body>
+
+</html>

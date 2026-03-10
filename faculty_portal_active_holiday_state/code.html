@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CabinConnect - Holiday / Leave Management</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "primary-dark": "#1a7cd4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "pastel-red": "#fee2e2",
+                        "pastel-blue": "#e0f2fe",
+                        "pastel-pink": "#fce7f3",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: #f6f7f8;
+            background-image:
+                radial-gradient(at 10% 20%, rgba(254, 226, 226, 0.8) 0px, transparent 60%),
+                radial-gradient(at 90% 10%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
+                radial-gradient(at 80% 80%, rgba(252, 231, 243, 0.8) 0px, transparent 60%),
+                radial-gradient(at 20% 90%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
+                radial-gradient(at 50% 50%, rgba(252, 231, 243, 0.4) 0px, transparent 70%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Public Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .logo {
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .header-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            background: #e0f2fe;
+        }
+
+        .card-section {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .primary-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(43, 140, 238, 0.35);
+        }
+
+        .primary-btn:hover::before {
+            left: 100%;
+        }
+
+        .secondary-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-2px);
+            background: #e0f2fe;
+            border-color: rgba(43, 140, 238, 0.3);
+        }
+
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #2b8cee;
+        }
+
+        .toggle-checkbox:checked+.toggle-label {
+            background-color: #2b8cee;
+        }
+
+        .input-field {
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1.5px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .input-field:focus {
+            border-color: #2b8cee;
+            box-shadow: 0 0 0 3px rgba(43, 140, 238, 0.15);
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="glass-nav sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-10 py-3 flex items-center justify-between">
+                <a href="/cabinconnect_faculty_portal_management/code.html"
+                    class="logo flex items-center gap-3 text-slate-900">
+                    <div class="size-8 bg-primary rounded-lg flex items-center justify-center shadow shadow-primary/30">
+                        <span class="material-symbols-outlined text-white text-xl">meeting_room</span>
+                    </div>
+                    <h2 class="text-lg font-black leading-tight tracking-tight">CabinConnect – Faculty Portal</h2>
+                </a>
+                <div class="flex items-center gap-2">
+                    <a href="/cabinconnect_faculty_portal_management/code.html"
+                        class="header-btn flex items-center gap-2 h-10 px-4 rounded-lg bg-white/60 border border-white/50 text-slate-700 text-sm font-semibold shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                        Back to Portal
+                    </a>
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-9 border-2 border-primary/30"
+                        id="headerAvatar"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCisoZf-98FpmBUX4LPJs55b_3m4qvZN6ZKizUvStOaI8TQQaKEcZ4IoUHTFD4ytrwgfhr7TgZRzZB0hy0QotkGiu-ljHp7rhUoBpmwRVX6kxxNapBYeRMvEwrX1BPzD5Wp9TshI8p_Nm8ZfxapCvZdv5wWCU67ftLss4bIayNpz-9UHXvQ9XsiTPKTcDJm9rWg-mrEG-YpbpRZKYO1l_iaM-vC2jaeoeVjMiEoXEHconkeB7Pn_kYNCTIU2trDBGEwiqbfM2W7jkU");'>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-[1000px] mx-auto w-full px-4 sm:px-10 py-8 flex-1">
+
+            <!-- Success Banner -->
+            <div class="mb-6">
+                <div
+                    class="bg-white rounded-[2rem] border border-slate-100 p-5 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="size-10 bg-primary rounded-xl flex items-center justify-center shadow shadow-primary/30">
+                            <span class="material-symbols-outlined text-white text-xl">check_circle</span>
+                        </div>
+                        <div>
+                            <p class="text-slate-900 font-black leading-tight">Details Updated Successfully!</p>
+                            <p class="text-slate-500 text-sm mt-0.5">Your holiday status has been synchronized across
+                                the campus portal.</p>
+                        </div>
+                    </div>
+                    <a href="#"
+                        class="text-sm font-bold text-primary flex items-center gap-1.5 hover:underline shrink-0">
+                        View Log
+                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page Heading -->
+            <div class="flex flex-col gap-2 mb-8">
+                <h1 class="text-slate-900 text-4xl font-black leading-tight">Holiday / Leave Management</h1>
+                <p class="text-slate-500 text-base">Control your availability and auto-responses during leave periods.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left: Configuration -->
+                <div class="lg:col-span-2 space-y-6">
+
+                    <!-- Holiday Mode Toggle Card -->
+                    <div class="card-section bg-white rounded-[2rem] border border-slate-100 p-6 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col gap-1">
+                                <p class="text-slate-900 text-lg font-black leading-tight">Holiday Mode</p>
+                                <p class="text-slate-500 text-sm">When active, your availability is forced to 'Not
+                                    Available'.</p>
+                            </div>
+                            <div
+                                class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                                    id="holidayToggle" name="toggle" type="checkbox" checked />
+                                <label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
+                                    for="holidayToggle"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Availability Settings Card -->
+                    <div class="card-section bg-white rounded-[2rem] border border-slate-100 p-6 shadow-sm space-y-6">
+                        <h3 class="text-lg font-black text-slate-900">Availability Settings</h3>
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="flex flex-col gap-2">
+                                <label class="text-sm font-bold text-slate-700">Current Availability</label>
+                                <div class="relative opacity-60 cursor-not-allowed">
+                                    <select class="input-field w-full h-12 rounded-xl px-4 text-slate-900 font-medium"
+                                        disabled>
+                                        <option selected>Not Available</option>
+                                        <option>Available</option>
+                                        <option>Busy</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                                        <span class="material-symbols-outlined text-slate-500">lock</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-400">Disabled while Holiday Mode is ON.</p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-sm font-bold text-slate-700">Status Message</label>
+                                <div class="relative opacity-60 cursor-not-allowed">
+                                    <textarea
+                                        class="input-field w-full min-h-[100px] rounded-xl px-4 py-3 text-slate-900 resize-none"
+                                        disabled>Auto-filled: On Leave</textarea>
+                                    <div class="absolute top-4 right-4 text-primary">
+                                        <span class="material-symbols-outlined">auto_fix_high</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Timetable & Actions -->
+                <div class="space-y-6">
+
+                    <!-- Active Timetable Card -->
+                    <div class="card-section bg-white rounded-[2rem] border border-slate-100 p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-black text-slate-900">Active Timetable</h3>
+                            <span class="material-symbols-outlined text-slate-400">calendar_month</span>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 bg-slate-50">
+                            <div class="size-12 flex items-center justify-center rounded-xl bg-red-100 text-red-600">
+                                <span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-bold text-slate-900 truncate">spring_timetable_2024.pdf</p>
+                                <p class="text-xs text-slate-500">2.4 MB • Uploaded May 12</p>
+                            </div>
+                            <button
+                                class="header-btn size-8 flex items-center justify-center text-slate-400 hover:text-primary transition-colors rounded-lg">
+                                <span class="material-symbols-outlined text-lg">download</span>
+                            </button>
+                        </div>
+                        <button
+                            class="secondary-btn w-full mt-4 flex items-center justify-center gap-2 py-3 rounded-full border-2 border-dashed border-slate-200 text-slate-500 hover:border-primary hover:text-primary transition-all">
+                            <span class="material-symbols-outlined">add</span>
+                            <span class="text-sm font-bold">Replace Timetable</span>
+                        </button>
+                    </div>
+
+                    <!-- Next Return Card -->
+                    <div class="card-section bg-primary/5 border border-primary/20 rounded-[2rem] p-6">
+                        <h3 class="text-base font-black text-slate-900 mb-3">Next Scheduled Return</h3>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="material-symbols-outlined text-primary">event</span>
+                            <p class="text-xl font-black text-slate-900">June 15, 2024</p>
+                        </div>
+                        <button onclick="deactivateLeave()"
+                            class="primary-btn w-full py-3 bg-primary text-white font-bold rounded-full shadow-lg shadow-primary/30">
+                            Deactivate Leave Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Save Bar -->
+            <div
+                class="mt-12 flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-slate-100 pt-8">
+                <p class="text-slate-400 text-sm">Holiday mode is currently <strong
+                        class="text-primary">active</strong>.</p>
+                <div class="flex gap-4">
+                    <a href="/cabinconnect_faculty_portal_management/code.html"
+                        class="secondary-btn px-8 py-3 rounded-full border border-slate-200 text-slate-900 font-bold hover:bg-slate-50 transition-all no-underline">
+                        Back to Portal
+                    </a>
+                    <button onclick="saveChanges()"
+                        class="primary-btn px-8 py-3 rounded-full bg-primary text-white font-bold shadow-lg shadow-primary/20">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+
+            <footer class="mt-12 py-8 border-t border-slate-100 text-center">
+                <p class="text-sm text-slate-400">© 2025 CabinConnect Faculty Management System. All rights reserved.
+                </p>
+            </footer>
+        </main>
+    </div>
+    <script src="../shared/data.js"></script>
+    <script>
+        const session = CabinConnect.requireAuth(['faculty']);
+
+        async function initPage() {
+            if (!session || !session.facultyId) return;
+            const member = await CabinConnect.getFacultyById(session.facultyId);
+            if (!member) return;
+
+            // Sync holiday toggle from server
+            const toggle = document.getElementById('holidayToggle');
+            if (toggle) toggle.checked = !!member.onHoliday;
+
+            // Show member name/avatar in header if elements exist
+            const avatarEl = document.getElementById('headerAvatar');
+            if (avatarEl && member.image) {
+                avatarEl.style.backgroundImage = `url('${member.image}')`;
+            }
+        }
+
+        initPage();
+
+        async function saveChanges() {
+            if (!session || !session.facultyId) return;
+            const toggle = document.getElementById('holidayToggle');
+            const onHoliday = toggle ? toggle.checked : true;
+            const result = await CabinConnect.updateFacultyStatus(
+                session.facultyId,
+                'unavailable',
+                onHoliday ? 'On Leave' : '',
+                onHoliday
+            );
+            showToast(result.success ? 'Changes saved successfully!' : 'Failed to save. Try again.', result.success ? 'success' : 'error');
+        }
+
+        async function deactivateLeave() {
+            if (!session || !session.facultyId) return;
+            const result = await CabinConnect.updateFacultyStatus(
+                session.facultyId,
+                'available',
+                '',
+                false
+            );
+            if (result.success) {
+                showToast('Leave deactivated! Redirecting…', 'success');
+                setTimeout(() => { window.location.href = '/cabinconnect_faculty_portal_management/code.html'; }, 1500);
+            } else {
+                showToast('Failed to deactivate. Try again.', 'error');
+            }
+        }
+
+        function logout() {
+            CabinConnect.logout();
+            window.location.href = '/login/login.html';
+        }
+
+        function showToast(message, type = 'success') {
+            const existing = document.getElementById('cc-toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.id = 'cc-toast';
+            const bg = type === 'success' ? '#2b8cee' : '#ef4444';
+            toast.style.cssText = `position:fixed;bottom:24px;right:24px;z-index:200;background:${bg};color:white;padding:12px 20px;border-radius:12px;font-weight:700;font-family:Public Sans,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,0.15);display:flex;align-items:center;gap:8px;`;
+            toast.innerHTML = `<span style="font-family:'Material Symbols Outlined';font-size:18px">${type === 'success' ? 'check_circle' : 'error'}</span>${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+    </script>
+</body>
+
+</html>

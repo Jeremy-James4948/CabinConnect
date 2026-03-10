@@ -1,0 +1,61 @@
+{
+    "students": [
+        {
+            "email": "student@campus.edu",
+            "password": "student123",
+            "name": "Alex Johnson"
+        },
+        {
+            "email": "henish.patel@campus.edu",
+            "password": "henish2024",
+            "name": "Henish Patel"
+        },
+        {
+            "email": "liam.torres@campus.edu",
+            "password": "liam2024",
+            "name": "Liam Torres"
+        },
+        {
+            "email": "aisha.khan@campus.edu",
+            "password": "aisha2024",
+            "name": "Aisha Khan"
+        },
+        {
+            "email": "ryan.lee@campus.edu",
+            "password": "ryan2024",
+            "name": "Ryan Lee"
+        }
+    ],
+    "faculty": [
+        {
+            "email": "faculty@campus.edu",
+            "password": "faculty123",
+            "name": "Dr. Jane Smith",
+            "id": 1
+        },
+        {
+            "email": "m.chen@campus.edu",
+            "password": "chen2024",
+            "name": "Prof. Michael Chen",
+            "id": 2
+        },
+        {
+            "email": "s.williams@campus.edu",
+            "password": "sarah2024",
+            "name": "Dr. Sarah Williams",
+            "id": 3
+        },
+        {
+            "email": "d.kumar@campus.edu",
+            "password": "kumar2024",
+            "name": "Prof. David Kumar",
+            "id": 4
+        },
+        {
+            "email": "e.rodriguez@campus.edu",
+            "password": "emily2024",
+            "name": "Dr. Emily Rodriguez",
+            "id": 5
+        }
+    ]
+}
