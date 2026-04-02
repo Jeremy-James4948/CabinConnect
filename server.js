@@ -155,6 +155,16 @@ app.get('/api/users', (req, res) => {
     }
 });
 
+// Health check & test routes
+app.get('/test', (req, res) => {
+    res.send('Backend working 🔥');
+});
+
+app.get('/health', (req, res) => {
+    res.json({ status: 'ok', uptime: process.uptime() });
+});
+
+// Root redirect → login page
 app.get('/', (req, res) => {
     res.redirect('/login/login.html');
 });
@@ -163,11 +173,4 @@ app.listen(PORT, () => {
     console.log(`\n🏫  CabinConnect server running at http://localhost:${PORT}`);
     console.log(`   Login page  → http://localhost:${PORT}/login/login.html`);
     console.log(`   Faculty API → http://localhost:${PORT}/api/faculty\n`);
-});
-
-
-
-
-app.get("/test", (req, res) => {
-    res.send("Backend working 🔥");
 });
