@@ -4,8 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 const FACULTY_FILE = path.join(__dirname, 'data', 'faculty.json');
 const USERS_FILE = path.join(__dirname, 'data', 'users.json');
 
@@ -166,6 +165,9 @@ app.listen(PORT, () => {
     console.log(`   Faculty API → http://localhost:${PORT}/api/faculty\n`);
 });
 
-app.get("/", (req, res) => {
-    res.send("CabinConnect Backend is Running 🚀");
+
+
+
+app.get("/test", (req, res) => {
+    res.send("Backend working 🔥");
 });
