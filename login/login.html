@@ -51,7 +51,7 @@
             position: relative;
         }
 
-        /* Accent triangle wedge — fills the gap between diagonal and login panel */
+        /* Accent triangle wedge */
         .split-screen::after {
             content: "";
             position: absolute;
@@ -59,10 +59,10 @@
             left: 38%;
             width: 14%;
             height: 100%;
-            background: linear-gradient(165deg, #818cf8 0%, #6366f1 40%, #a855f7 100%);
+            background: linear-gradient(165deg, #013328 0%, #CC8B65 60%, #013328 100%);
             clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);
             z-index: 1;
-            opacity: 0.85;
+            opacity: 0.92;
             pointer-events: none;
         }
 
@@ -70,7 +70,7 @@
         .brand-panel {
             width: 48%;
             min-height: 100vh;
-            background: linear-gradient(135deg, #0f172a, #1e293b, #312e81, #1e1b4b);
+            background: linear-gradient(160deg, #100C0D 0%, #013328 60%, #100C0D 100%);
             background-size: 300% 300%;
             animation: brandShift 10s ease infinite;
             display: flex;
@@ -127,7 +127,7 @@
 
         .brand-name span {
             display: inline;
-            background: linear-gradient(135deg, #fb923c, #ec4899, #a855f7);
+            background: linear-gradient(135deg, #E3DCD2, #CC8B65);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -145,86 +145,67 @@
 
 
 
-        /* Floating decorative shapes */
-        .shape {
+        /* Floating Diamond Crystals */
+        .crystal {
             position: absolute;
-            border-radius: 50%;
-            opacity: 0.08;
+            z-index: 4;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(1,51,40,0.9), rgba(204,139,101,0.85));
+            border: 1.5px solid rgba(227,220,210,0.3);
+            box-shadow:
+                0 0 28px rgba(204,139,101,0.45),
+                inset 0 0 18px rgba(255,255,255,0.15);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Shimmer sweeping light beam */
+        .crystal::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -150%;
+            width: 60%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            animation: crystalShimmer 4s infinite ease-in-out;
             pointer-events: none;
         }
 
-        .shape-1 {
-            width: 280px;
-            height: 280px;
-            background: #818cf8;
-            top: -80px;
-            right: -40px;
-            animation: shapeFloat1 12s ease-in-out infinite;
+        @keyframes crystalShimmer {
+            0%   { left: -150%; }
+            40%  { left: 200%; }
+            100% { left: 200%; }
         }
 
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            background: #fb923c;
-            bottom: 10%;
-            left: -60px;
-            animation: shapeFloat2 10s ease-in-out infinite;
+        .crystal-1 { width: 56px; height: 56px; left: 34%; top: 18%; animation: floatRot1 10s ease-in-out infinite; }
+        .crystal-2 { width: 44px; height: 44px; left: 44%; top: 38%; animation: floatRot2 12s ease-in-out infinite; }
+        .crystal-3 { width: 70px; height: 70px; left: 38%; top: 62%; animation: floatRot3 14s ease-in-out infinite; }
+        .crystal-4 { width: 38px; height: 38px; left: 46%; top: 82%; animation: floatRot4  9s ease-in-out infinite; }
+
+        @keyframes floatRot1 {
+            0%, 100% { transform: translate(0,   0)   rotate(45deg);  }
+            50%       { transform: translate(-10px, 20px) rotate(90deg);  }
+        }
+        @keyframes floatRot2 {
+            0%, 100% { transform: translate(0,   0)    rotate(15deg); }
+            50%       { transform: translate(15px, -15px) rotate(60deg); }
+        }
+        @keyframes floatRot3 {
+            0%, 100% { transform: translate(0,   0)    rotate(65deg);  }
+            50%       { transform: translate(-20px, -10px) rotate(110deg); }
+        }
+        @keyframes floatRot4 {
+            0%, 100% { transform: translate(0,   0)   rotate(20deg); }
+            50%       { transform: translate(10px, 25px) rotate(65deg); }
         }
 
-        .shape-3 {
-            width: 140px;
-            height: 140px;
-            background: #ec4899;
-            bottom: -40px;
-            right: 20%;
-            animation: shapeFloat3 14s ease-in-out infinite;
-        }
-
-        @keyframes shapeFloat1 {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(-20px, 30px) scale(1.08);
-            }
-        }
-
-        @keyframes shapeFloat2 {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(15px, -20px) scale(1.1);
-            }
-        }
-
-        @keyframes shapeFloat3 {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(-10px, -15px) scale(1.06);
-            }
-        }
-
-        /* Subtle grid pattern overlay */
+        /* Radial dot pattern overlay */
         .brand-panel::before {
             content: "";
             position: absolute;
             inset: 0;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: radial-gradient(rgba(204,139,101,0.18) 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
             z-index: 1;
             pointer-events: none;
         }
@@ -237,11 +218,10 @@
             right: 0;
             width: 3px;
             height: 100%;
-            background: linear-gradient(to bottom, transparent, #818cf8, #ec4899, #fb923c, transparent);
-            opacity: 0.4;
+            background: linear-gradient(to bottom, transparent, #013328, #CC8B65, #E3DCD2, transparent);
+            opacity: 0.7;
             z-index: 3;
             pointer-events: none;
-            /* Position along the diagonal edge */
             transform-origin: top right;
             transform: rotate(0deg);
         }
@@ -253,9 +233,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #dbeafe, #fce7f3, #fde68a, #dbeafe);
-            background-size: 300% 300%;
-            animation: bgShift 12s ease infinite;
+            background: #E3DCD2;
             padding: 24px 28px;
             overflow-y: auto;
             z-index: 2;
@@ -280,11 +258,10 @@
             position: absolute;
             width: 220px;
             height: 220px;
-            background: #fbcfe8;
+            background: rgba(204,139,101,0.12);
             border-radius: 50%;
             top: -70px;
             right: -70px;
-            opacity: 0.4;
             pointer-events: none;
         }
 
@@ -293,11 +270,10 @@
             position: absolute;
             width: 240px;
             height: 240px;
-            background: #bfdbfe;
+            background: rgba(1,51,40,0.07);
             border-radius: 50%;
             bottom: -90px;
             left: -90px;
-            opacity: 0.4;
             pointer-events: none;
         }
 
@@ -311,7 +287,7 @@
             font-family: "Space Grotesk", sans-serif;
             font-size: 42px;
             font-weight: 700;
-            background: linear-gradient(135deg, #1e293b 0%, #475569 50%, #1e293b 100%);
+            background: linear-gradient(135deg, #100C0D 0%, #013328 50%, #100C0D 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -355,9 +331,9 @@
         }
 
         .toggle button#studentBtn.active {
-            background: linear-gradient(135deg, #fb923c, #ec4899);
+            background: linear-gradient(135deg, #CC8B65, #013328);
             color: white;
-            box-shadow: 0 10px 22px rgba(236, 72, 153, 0.28);
+            box-shadow: 0 10px 22px rgba(204, 139, 101, 0.3);
         }
 
         .toggle button#facultyBtn {
@@ -367,9 +343,9 @@
         }
 
         .toggle button#facultyBtn.active {
-            background: linear-gradient(135deg, #3b82f6, #2b8cee);
+            background: linear-gradient(135deg, #013328, #100C0D);
             color: white;
-            box-shadow: 0 10px 22px rgba(43, 140, 238, 0.32);
+            box-shadow: 0 10px 22px rgba(1, 51, 40, 0.32);
         }
 
         /* ── Form ── */
@@ -410,15 +386,15 @@
             user-select: none;
         }
 
-        /* Student mode — pink icon */
+        /* Student mode — terracotta icon */
         .input-wrap:focus-within .mat-icon {
-            color: #ec4899;
+            color: #CC8B65;
             transform: translateY(-50%) scale(1.15);
         }
 
-        /* Faculty mode — blue icon */
+        /* Faculty mode — forest green icon */
         body.faculty-mode .input-wrap:focus-within .mat-icon {
-            color: #2b8cee;
+            color: #013328;
         }
 
         .input-wrap input {
@@ -444,23 +420,23 @@
             background: #fafcff;
         }
 
-        /* Student focus — pink glow */
+        /* Student focus — terracotta glow */
         .input-wrap input:focus {
             outline: none;
-            border-color: #ec4899;
-            background: #fff9fc;
-            box-shadow: inset 0 1px 2px rgba(236, 72, 153, 0.06),
-                0 0 0 4px rgba(236, 72, 153, 0.12),
-                0 6px 20px rgba(236, 72, 153, 0.08);
+            border-color: #CC8B65;
+            background: #fdfaf7;
+            box-shadow: inset 0 1px 2px rgba(204, 139, 101, 0.06),
+                0 0 0 4px rgba(204, 139, 101, 0.14),
+                0 6px 20px rgba(204, 139, 101, 0.08);
         }
 
-        /* Faculty focus — blue glow */
+        /* Faculty focus — forest green glow */
         body.faculty-mode .input-wrap input:focus {
-            border-color: #2b8cee;
-            background: #f8fbff;
-            box-shadow: inset 0 1px 2px rgba(43, 140, 238, 0.06),
-                0 0 0 4px rgba(43, 140, 238, 0.12),
-                0 6px 20px rgba(43, 140, 238, 0.08);
+            border-color: #013328;
+            background: #f4f9f7;
+            box-shadow: inset 0 1px 2px rgba(1, 51, 40, 0.06),
+                0 0 0 4px rgba(1, 51, 40, 0.1),
+                0 6px 20px rgba(1, 51, 40, 0.08);
         }
 
         .input-wrap input::placeholder {
@@ -485,11 +461,11 @@
         }
 
         .eye-btn:hover {
-            color: #ec4899;
+            color: #CC8B65;
         }
 
         body.faculty-mode .eye-btn:hover {
-            color: #2b8cee;
+            color: #013328;
         }
 
         /* ── Row (remember / forgot) ── */
@@ -514,16 +490,16 @@
         .row label input[type="checkbox"] {
             width: 15px;
             height: 15px;
-            accent-color: #ec4899;
+            accent-color: #CC8B65;
             cursor: pointer;
         }
 
         body.faculty-mode .row label input[type="checkbox"] {
-            accent-color: #2b8cee;
+            accent-color: #013328;
         }
 
         .row a {
-            color: #f97316;
+            color: #CC8B65;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s, opacity 0.2s;
@@ -535,7 +511,7 @@
         }
 
         body.faculty-mode .row a {
-            color: #2b8cee;
+            color: #013328;
         }
 
         /* ── Error ── */
@@ -585,12 +561,12 @@
             padding: 17px;
             border: none;
             border-radius: 16px;
-            background: linear-gradient(135deg, #fb923c, #ec4899);
+            background: linear-gradient(135deg, #013328, #CC8B65);
             color: white;
             font-size: 17px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 10px 26px rgba(236, 72, 153, 0.28);
+            box-shadow: 0 10px 26px rgba(1, 51, 40, 0.25);
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
@@ -601,16 +577,16 @@
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 16px 36px rgba(236, 72, 153, 0.38);
+            box-shadow: 0 16px 36px rgba(1, 51, 40, 0.35);
         }
 
         body.faculty-mode .login-btn {
-            background: linear-gradient(135deg, #3b82f6, #2b8cee);
-            box-shadow: 0 10px 26px rgba(43, 140, 238, 0.28);
+            background: linear-gradient(135deg, #100C0D, #013328);
+            box-shadow: 0 10px 26px rgba(16, 12, 13, 0.28);
         }
 
         body.faculty-mode .login-btn:hover {
-            box-shadow: 0 16px 36px rgba(43, 140, 238, 0.38);
+            box-shadow: 0 16px 36px rgba(16, 12, 13, 0.4);
         }
 
         .login-btn:active {
@@ -1005,9 +981,10 @@
                 <h2 class="brand-name">Cabin<span>Connect</span></h2>
                 <p class="brand-tagline">Faculty Management System</p>
             </div>
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
+            <div class="crystal crystal-1"></div>
+            <div class="crystal crystal-2"></div>
+            <div class="crystal crystal-3"></div>
+            <div class="crystal crystal-4"></div>
         </div>
 
         <!-- ── Login Panel (Right) ── -->
@@ -1094,7 +1071,7 @@
 
     </div>
 
-    <script src="../shared/data.js"></script>
+    <script src="/js/api.js"></script>
     <script>
         let selectedRole = 'student';
 
@@ -1201,9 +1178,9 @@
 
             if (result.success) {
                 if (selectedRole === 'student') {
-                    window.location.href = '/student_portal/student_portal.html';
+                    window.location.href = '/student/student.html';
                 } else {
-                    window.location.href = '/cabinconnect_faculty_portal_management/code.html';
+                    window.location.href = '/faculty/faculty.html';
                 }
             } else {
                 showError(result.error || 'Invalid email or password. Please try again.');
@@ -1212,10 +1189,10 @@
 
         if (CabinConnect.isAuthenticated()) {
             const session = CabinConnect.getSession();
-            if (session.role === 'student') {
-                window.location.href = '/student_portal/student_portal.html';
-            } else {
-                window.location.href = '/cabinconnect_faculty_portal_management/code.html';
+            if (session.role === 'faculty') {
+                window.location.href = '/faculty/faculty.html';
+            } else if (session.role === 'student') {
+                window.location.href = '/student/student.html';
             }
         }
 

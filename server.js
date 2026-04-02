@@ -10,7 +10,7 @@ const FACULTY_FILE = path.join(__dirname, 'data', 'faculty.json');
 const USERS_FILE = path.join(__dirname, 'data', 'users.json');
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 app.use(express.static(__dirname));
 
@@ -44,6 +44,35 @@ app.get('/api/faculty/:id', (req, res) => {
         res.json(member);
     } catch (err) {
         res.status(500).json({ error: 'Failed to read faculty data' });
+    }
+});
+
+app.patch('/api/faculty/:id/timetable', (req, res) => {
+    try {
+        const { timetable } = req.body;
+        const faculty = readFaculty();
+        const index = faculty.findIndex(f => f.id === parseInt(req.params.id));
+        if (index === -1) return res.status(404).json({ error: 'Faculty member not found' });
+
+        faculty[index].timetable = timetable;
+        writeFaculty(faculty);
+        res.json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to upload timetable' });
+    }
+});
+
+app.delete('/api/faculty/:id/timetable', (req, res) => {
+    try {
+        const faculty = readFaculty();
+        const index = faculty.findIndex(f => f.id === parseInt(req.params.id));
+        if (index === -1) return res.status(404).json({ error: 'Faculty member not found' });
+
+        delete faculty[index].timetable;
+        writeFaculty(faculty);
+        res.json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to delete timetable' });
     }
 });
 
@@ -135,4 +164,8 @@ app.listen(PORT, () => {
     console.log(`\n🏫  CabinConnect server running at http://localhost:${PORT}`);
     console.log(`   Login page  → http://localhost:${PORT}/login/login.html`);
     console.log(`   Faculty API → http://localhost:${PORT}/api/faculty\n`);
+});
+
+app.get("/", (req, res) => {
+    res.send("CabinConnect Backend is Running 🚀");
 });

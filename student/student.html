@@ -16,13 +16,13 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#2b8cee",
-                        "primary-dark": "#1a7cd4",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101922",
+                        "primary": "#013328",
+                        "primary-dark": "#011f18",
+                        "background-light": "#E3DCD2",
+                        "background-dark": "#100C0D",
                         "pastel-red": "#fee2e2",
-                        "pastel-blue": "#e0f2fe",
-                        "pastel-pink": "#fce7f3",
+                        "pastel-blue": "rgba(204,139,101,0.12)",
+                        "pastel-pink": "rgba(1,51,40,0.08)",
                     },
                     fontFamily: {
                         "display": ["Public Sans", "sans-serif"],
@@ -41,13 +41,13 @@
     <style>
         body {
             font-family: 'Public Sans', sans-serif;
-            background-color: #f6f7f8;
+            background-color: #E3DCD2;
             background-image:
-                radial-gradient(at 10% 20%, rgba(254, 226, 226, 0.8) 0px, transparent 60%),
-                radial-gradient(at 90% 10%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
-                radial-gradient(at 80% 80%, rgba(252, 231, 243, 0.8) 0px, transparent 60%),
-                radial-gradient(at 20% 90%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
-                radial-gradient(at 50% 50%, rgba(252, 231, 243, 0.4) 0px, transparent 70%);
+                radial-gradient(at 10% 20%, rgba(204,139,101,0.15) 0px, transparent 60%),
+                radial-gradient(at 90% 10%, rgba(1,51,40,0.08) 0px, transparent 60%),
+                radial-gradient(at 80% 80%, rgba(227,220,210,0.5) 0px, transparent 60%),
+                radial-gradient(at 20% 90%, rgba(204,139,101,0.1) 0px, transparent 60%),
+                radial-gradient(at 50% 50%, rgba(1,51,40,0.05) 0px, transparent 70%);
             background-attachment: fixed;
             min-height: 100vh;
         }
@@ -76,7 +76,7 @@
 
         .faculty-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 40px -10px rgba(43, 140, 238, 0.15);
+            box-shadow: 0 20px 40px -10px rgba(1, 51, 40, 0.15);
         }
 
         .profile-img {
@@ -122,7 +122,7 @@
 
         .action-btn:hover {
             transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 8px 20px rgba(43, 140, 238, 0.35);
+            box-shadow: 0 8px 20px rgba(1, 51, 40, 0.3);
         }
 
         /* Search */
@@ -133,8 +133,8 @@
         }
 
         .search-input:focus {
-            box-shadow: 0 0 0 3px rgba(43, 140, 238, 0.15);
-            border-color: #2b8cee;
+            box-shadow: 0 0 0 3px rgba(1, 51, 40, 0.12);
+            border-color: #013328;
             outline: none;
             background: white;
         }
@@ -145,7 +145,7 @@
 
         .search-container:focus-within .search-icon {
             transform: scale(1.1);
-            color: #2b8cee;
+            color: #013328;
         }
 
         /* Filter buttons */
@@ -155,16 +155,16 @@
 
         .filter-btn:hover {
             transform: translateY(-1px);
-            background: #e0f2fe;
-            border-color: rgba(43, 140, 238, 0.4);
-            color: #2b8cee;
+            background: rgba(204,139,101,0.12);
+            border-color: rgba(1, 51, 40, 0.3);
+            color: #013328;
         }
 
         .filter-btn.active {
-            background: #2b8cee;
+            background: #013328;
             color: white;
-            border-color: #2b8cee;
-            box-shadow: 0 4px 14px rgba(43, 140, 238, 0.35);
+            border-color: #013328;
+            box-shadow: 0 4px 14px rgba(1, 51, 40, 0.3);
             font-weight: 700;
         }
 
@@ -175,7 +175,7 @@
 
         .header-btn:hover {
             transform: translateY(-2px) scale(1.05);
-            background: #e0f2fe;
+            background: rgba(204,139,101,0.12);
         }
 
         .logo {
@@ -209,8 +209,8 @@
         }
 
         .dept-tag:hover {
-            background: #e0f2fe;
-            color: #2b8cee;
+            background: rgba(204,139,101,0.15);
+            color: #013328;
             transform: scale(1.05);
         }
 
@@ -232,8 +232,8 @@
         }
 
         .faculty-card:hover .avatar-ring {
-            border-color: #2b8cee;
-            box-shadow: 0 0 18px rgba(43, 140, 238, 0.3);
+            border-color: #CC8B65;
+            box-shadow: 0 0 18px rgba(204, 139, 101, 0.3);
         }
 
         /* Dropdown */
@@ -244,8 +244,8 @@
         }
 
         .dropdown-select:focus {
-            border-color: #2b8cee;
-            box-shadow: 0 0 0 3px rgba(43, 140, 238, 0.15);
+            border-color: #013328;
+            box-shadow: 0 0 0 3px rgba(1, 51, 40, 0.12);
             outline: none;
         }
 
@@ -328,8 +328,8 @@
                             <p class="text-sm font-bold text-slate-900" id="userName">Student</p>
                             <p class="text-xs text-slate-400">Student Account</p>
                         </div>
-                        <div
-                            class="size-9 rounded-xl bg-primary flex items-center justify-center shadow shadow-primary/30">
+                        <div onclick="openProfileModal()" id="headerProfileIcon"
+                            class="size-9 rounded-xl bg-primary flex items-center justify-center shadow shadow-primary/30 cursor-pointer overflow-hidden transition-transform hover:scale-105">
                             <span class="material-symbols-outlined text-white text-lg">person</span>
                         </div>
                         <button onclick="logout()"
@@ -346,7 +346,7 @@
 
             <!-- Page Header -->
             <div class="mb-8">
-                <h2 class="text-slate-900 text-3xl font-black tracking-tight">Faculty Directory</h2>
+                <h2 class="text-slate-900 text-3xl font-black tracking-tight">Faculty Dashboard</h2>
                 <p class="text-slate-500 mt-1">View real-time availability and contact information</p>
             </div>
 
@@ -477,21 +477,253 @@
                 </button>
             </div>
             <div class="p-4">
-                <img src="https://images.unsplash.com/photo-1562240020-ce31ccb0fa7d?w=1200&h=800&fit=crop"
-                    alt="Campus Map" class="w-full max-w-4xl rounded-xl" />
+                <img src="../VIT-CHENNAI_CAMPUS-LAYOUT_page-0001.jpg" alt="Campus Map"
+                    class="w-full max-w-4xl rounded-xl" />
                 <p class="text-sm text-slate-400 mt-3 text-center">Click on a building to view faculty locations</p>
             </div>
         </div>
     </div>
 
-    <script src="../shared/data.js"></script>
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal-overlay" onclick="if(event.target.id === 'profileModal') closeProfileModal()">
+        <div class="modal-content rounded-[2rem] p-0 shadow-2xl w-full max-w-md bg-white">
+            <div class="flex items-center justify-between p-4 border-b border-slate-100 bg-slate-50/50">
+                <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">account_circle</span>
+                    Student Profile
+                </h2>
+                <button onclick="closeProfileModal()"
+                    class="header-btn p-2 rounded-lg bg-black/5 text-slate-600 hover:bg-black/10 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6">
+                <!-- View Mode -->
+                <div id="profileViewMode" class="space-y-4">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-24 h-24 rounded-full bg-primary/10 border-4 border-primary/20 flex flex-col items-center justify-center overflow-hidden"
+                            id="viewProfilePhotoContainer">
+                            <span class="material-symbols-outlined text-4xl text-primary"
+                                id="viewProfileIcon">person</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="text-center font-black text-2xl text-slate-900" id="viewName">Student Name</div>
+
+                        <div class="bg-slate-50 p-4 rounded-xl space-y-3 border border-slate-100">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-slate-400">badge</span>
+                                <div class="flex-1">
+                                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Registration
+                                        Number</p>
+                                    <p class="text-sm font-semibold text-slate-800" id="viewRegNo">Not set</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-slate-400">calendar_month</span>
+                                <div class="flex-1">
+                                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Date of Birth
+                                    </p>
+                                    <p class="text-sm font-semibold text-slate-800" id="viewDob">Not set</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-slate-400 mt-0.5">location_on</span>
+                                <div class="flex-1">
+                                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Address</p>
+                                    <p class="text-sm font-semibold text-slate-800" id="viewAddress">Not set</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-primary/5 p-4 rounded-xl border border-primary/10">
+                            <p
+                                class="text-xs text-primary font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">info</span>
+                                About Me
+                            </p>
+                            <p class="text-sm text-slate-700 italic" id="viewDescription">No description added yet.</p>
+                        </div>
+                    </div>
+
+                    <button onclick="toggleProfileEditMode()"
+                        class="w-full mt-4 py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-transform hover:scale-[1.02] shadow-md flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-sm">edit</span>
+                        Edit Profile
+                    </button>
+                </div>
+
+                <!-- Edit Mode -->
+                <div id="profileEditMode" class="hidden space-y-4">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Photo URL</label>
+                            <input type="text" id="editPhoto"
+                                class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm font-medium"
+                                placeholder="https://example.com/photo.jpg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Full Name</label>
+                            <input type="text" id="editName"
+                                class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm font-medium">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">Reg. Number</label>
+                                <input type="text" id="editRegNo"
+                                    class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm font-medium">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">Date of Birth</label>
+                                <input type="date" id="editDob"
+                                    class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm font-medium">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Address</label>
+                            <textarea id="editAddress" rows="2"
+                                class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm font-medium resize-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Profile Description</label>
+                            <textarea id="editDescription" rows="3"
+                                class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm font-medium resize-none"
+                                placeholder="Write a short bio about yourself..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3 mt-6">
+                        <button onclick="toggleProfileEditMode()"
+                            class="flex-1 py-3 rounded-xl bg-slate-100 text-slate-700 font-bold hover:bg-slate-200 transition-transform hover:scale-[1.02]">Cancel</button>
+                        <button onclick="saveProfile()"
+                            class="flex-1 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-dark transition-transform hover:scale-[1.02] shadow-md shadow-primary/25">Save
+                            Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
     <script>
         let currentStatusFilter = 'all';
         let allFacultyCache = [];
 
         const session = CabinConnect.requireAuth(['student']);
+
+        // Profile Management
+        let studentProfile = {};
+
+        function loadStudentProfile() {
+            if (!session) return;
+            const key = 'student_profile_' + session.email;
+            const saved = localStorage.getItem(key);
+            if (saved) {
+                studentProfile = JSON.parse(saved);
+            } else {
+                studentProfile = {
+                    name: session.name,
+                    photo: '',
+                    regNo: '',
+                    dob: '',
+                    address: '',
+                    description: ''
+                };
+            }
+            updateHeaderProfileIcon();
+        }
+
+        function updateHeaderProfileIcon() {
+            if (!session) return;
+            const container = document.getElementById('headerProfileIcon');
+            if (studentProfile.photo) {
+                container.innerHTML = `<img src="${studentProfile.photo}" class="w-full h-full object-cover" alt="Profile">`;
+            } else {
+                container.innerHTML = `<span class="material-symbols-outlined text-white text-lg">person</span>`;
+            }
+            document.getElementById('userName').textContent = studentProfile.name || session.name;
+        }
+
+        function openProfileModal() {
+            const modal = document.getElementById('profileModal');
+            modal.classList.add('active');
+            renderProfileView();
+            document.getElementById('profileViewMode').classList.remove('hidden');
+            document.getElementById('profileEditMode').classList.add('hidden');
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileModal').classList.remove('active');
+        }
+
+        function toggleProfileEditMode() {
+            const viewMode = document.getElementById('profileViewMode');
+            const editMode = document.getElementById('profileEditMode');
+
+            if (viewMode.classList.contains('hidden')) {
+                viewMode.classList.remove('hidden');
+                editMode.classList.add('hidden');
+            } else {
+                viewMode.classList.add('hidden');
+                editMode.classList.remove('hidden');
+
+                document.getElementById('editName').value = studentProfile.name || '';
+                document.getElementById('editPhoto').value = studentProfile.photo || '';
+                document.getElementById('editRegNo').value = studentProfile.regNo || '';
+                document.getElementById('editDob').value = studentProfile.dob || '';
+                document.getElementById('editAddress').value = studentProfile.address || '';
+                document.getElementById('editDescription').value = studentProfile.description || '';
+            }
+        }
+
+        function renderProfileView() {
+            document.getElementById('viewName').textContent = studentProfile.name || 'Student Name';
+            document.getElementById('viewRegNo').textContent = studentProfile.regNo || 'Not set';
+            document.getElementById('viewDob').textContent = studentProfile.dob || 'Not set';
+            document.getElementById('viewAddress').textContent = studentProfile.address || 'Not set';
+
+            const descEl = document.getElementById('viewDescription');
+            if (studentProfile.description) {
+                descEl.textContent = studentProfile.description;
+                descEl.classList.remove('text-slate-400');
+                descEl.classList.add('text-slate-700');
+            } else {
+                descEl.textContent = "No description added yet.";
+                descEl.classList.add('text-slate-400');
+                descEl.classList.remove('text-slate-700');
+            }
+
+            const photoContainer = document.getElementById('viewProfilePhotoContainer');
+            if (studentProfile.photo) {
+                photoContainer.innerHTML = `<img src="${studentProfile.photo}" class="w-full h-full object-cover">`;
+            } else {
+                photoContainer.innerHTML = `<span class="material-symbols-outlined text-4xl text-primary">person</span>`;
+            }
+        }
+
+        function saveProfile() {
+            studentProfile.name = document.getElementById('editName').value;
+            studentProfile.photo = document.getElementById('editPhoto').value;
+            studentProfile.regNo = document.getElementById('editRegNo').value;
+            studentProfile.dob = document.getElementById('editDob').value;
+            studentProfile.address = document.getElementById('editAddress').value;
+            studentProfile.description = document.getElementById('editDescription').value;
+
+            if (session) {
+                const key = 'student_profile_' + session.email;
+                localStorage.setItem(key, JSON.stringify(studentProfile));
+            }
+
+            updateHeaderProfileIcon();
+            toggleProfileEditMode();
+            renderProfileView();
+        }
+
         if (session) {
-            document.getElementById('userName').textContent = session.name;
+            loadStudentProfile();
         }
 
         function logout() {
@@ -554,8 +786,29 @@
                         <span class="material-symbols-outlined text-lg">email</span>
                         Contact
                     </a>
+                    <!-- Timetable Button -->
+                    ${faculty.timetable ? `
+                    <button onclick="viewFacultyTimetable(${faculty.id})" class="action-btn w-full mt-2 py-3 rounded-full bg-slate-100 text-slate-700 font-bold flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-slate-200">
+                        <span class="material-symbols-outlined text-lg">calendar_month</span>
+                        View Timetable
+                    </button>
+                    ` : ''}
                 </div>
             `;
+        }
+
+        function viewFacultyTimetable(facultyId) {
+            const member = allFacultyCache.find(f => f.id === facultyId);
+            const data = member ? member.timetable : null;
+            if (data) {
+                const newWindow = window.open();
+                if (data.type === 'application/pdf') {
+                    newWindow.document.write(`<iframe src="${data.data}" style="width:100%;height:100vh;border:none;"></iframe>`);
+                } else {
+                    newWindow.document.write(`<img src="${data.data}" style="max-width:100%;height:auto;" />`);
+                }
+                newWindow.document.title = data.name;
+            }
         }
 
         function renderFaculty(facultyList) {

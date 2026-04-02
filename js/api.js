@@ -65,6 +65,34 @@ const CabinConnect = {
         }
     },
 
+    async uploadTimetable(facultyId, timetableData) {
+        try {
+            const res = await fetch(`${this.BASE_URL}/api/faculty/${facultyId}/timetable`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ timetable: timetableData })
+            });
+            if (!res.ok) throw new Error('Network response was not ok');
+            return await res.json();
+        } catch (err) {
+            console.error('Failed to upload timetable:', err);
+            return { success: false, error: err.message };
+        }
+    },
+
+    async deleteTimetable(facultyId) {
+        try {
+            const res = await fetch(`${this.BASE_URL}/api/faculty/${facultyId}/timetable`, {
+                method: 'DELETE'
+            });
+            if (!res.ok) throw new Error('Network response was not ok');
+            return await res.json();
+        } catch (err) {
+            console.error('Failed to delete timetable:', err);
+            return { success: false, error: err.message };
+        }
+    },
+
     // ── Authentication ─────────────────────────────────────────────────────────
 
     // Login — sends credentials to backend, stores session in localStorage
@@ -111,12 +139,12 @@ const CabinConnect = {
     // Figure out the correct relative path to the login page
     _loginPath() {
         if (window.location.origin.startsWith('http')) {
-            return '/login/login.html';
+            return '/index.html';
         }
         // file:// protocol — use relative path
         const depth = window.location.pathname.split('/').length - 1;
         const prefix = depth > 2 ? '../' : '';
-        return `${prefix}login/login.html`;
+        return `${prefix}index.html`;
     },
 
     // ── Status UI helpers ──────────────────────────────────────────────────────

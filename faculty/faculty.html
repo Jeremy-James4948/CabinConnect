@@ -17,13 +17,13 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#2b8cee",
-                        "primary-dark": "#1a7cd4",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101922",
+                        "primary": "#013328",
+                        "primary-dark": "#011f18",
+                        "background-light": "#E3DCD2",
+                        "background-dark": "#100C0D",
                         "pastel-red": "#fee2e2",
-                        "pastel-blue": "#e0f2fe",
-                        "pastel-pink": "#fce7f3",
+                        "pastel-blue": "rgba(204,139,101,0.12)",
+                        "pastel-pink": "rgba(1,51,40,0.08)",
                     },
                     fontFamily: {
                         "display": ["Public Sans", "sans-serif"],
@@ -66,7 +66,7 @@
         }
 
         .toggle-checkbox:checked+.toggle-label {
-            background-color: #2b8cee;
+            background: #E3DCD2;
         }
 
         /* Hover animations */
@@ -76,7 +76,7 @@
 
         .header-btn:hover {
             transform: translateY(-2px) scale(1.05);
-            background: #e0f2fe;
+            background: rgba(204,139,101,0.12);
         }
 
         .status-option {
@@ -116,7 +116,7 @@
 
         .primary-btn:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(43, 140, 238, 0.35);
+            box-shadow: 0 15px 40px rgba(1, 51, 40, 0.3);
         }
 
         .primary-btn:hover::before {
@@ -129,7 +129,7 @@
 
         .secondary-btn:hover {
             transform: translateY(-2px);
-            background: #e0f2fe;
+            background: rgba(204,139,101,0.12);
             border-color: rgba(43, 140, 238, 0.3);
         }
 
@@ -139,8 +139,8 @@
 
         .upload-zone:hover {
             transform: scale(1.01);
-            border-color: #2b8cee;
-            background: #e0f2fe;
+            border-color: #013328;
+            background: rgba(204,139,101,0.08);
         }
 
         .profile-avatar {
@@ -149,7 +149,7 @@
 
         .profile-avatar:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(43, 140, 238, 0.25);
+            box-shadow: 0 10px 30px rgba(1, 51, 40, 0.2);
         }
 
         .toggle-wrapper {
@@ -177,8 +177,8 @@
         }
 
         .input-field:focus {
-            border-color: #2b8cee;
-            box-shadow: 0 0 0 3px rgba(43, 140, 238, 0.15);
+            border-color: #013328;
+            box-shadow: 0 0 0 3px rgba(1, 51, 40, 0.12);
             transform: scale(1.01);
         }
 
@@ -187,7 +187,7 @@
         }
 
         .checkbox-item:hover {
-            background: #e0f2fe;
+            background: rgba(204,139,101,0.12);
         }
 
         .file-card {
@@ -196,7 +196,7 @@
 
         .file-card:hover {
             transform: translateX(5px);
-            background: #e0f2fe;
+            background: rgba(204,139,101,0.12);
         }
 
         .delete-btn {
@@ -272,13 +272,13 @@
         }
 
         .calendar-day.today {
-            background: #2b8cee;
+            background: #013328;
             color: #fff;
             font-weight: bold;
         }
 
         .calendar-day.selected {
-            background: #2b8cee;
+            background: #CC8B65;
             color: #fff;
         }
 
@@ -319,13 +319,13 @@
     </style>
     <style>
         body {
-            background-color: #f6f7f8 !important;
+            background-color: #E3DCD2 !important;
             background-image:
-                radial-gradient(at 10% 20%, rgba(254, 226, 226, 0.8) 0px, transparent 60%),
-                radial-gradient(at 90% 10%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
-                radial-gradient(at 80% 80%, rgba(252, 231, 243, 0.8) 0px, transparent 60%),
-                radial-gradient(at 20% 90%, rgba(224, 242, 254, 0.8) 0px, transparent 60%),
-                radial-gradient(at 50% 50%, rgba(252, 231, 243, 0.4) 0px, transparent 70%) !important;
+                radial-gradient(at 10% 20%, rgba(204,139,101,0.15) 0px, transparent 60%),
+                radial-gradient(at 90% 10%, rgba(1,51,40,0.08) 0px, transparent 60%),
+                radial-gradient(at 80% 80%, rgba(227,220,210,0.5) 0px, transparent 60%),
+                radial-gradient(at 20% 90%, rgba(204,139,101,0.1) 0px, transparent 60%),
+                radial-gradient(at 50% 50%, rgba(1,51,40,0.05) 0px, transparent 70%) !important;
             background-attachment: fixed;
             min-height: 100vh;
         }
@@ -344,8 +344,7 @@
         <header class="glass-nav sticky top-0 z-50"
             style="background:rgba(255,255,255,0.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.2);">
             <div class="max-w-[1200px] mx-auto px-4 sm:px-10 py-3 flex items-center justify-between whitespace-nowrap">
-                <a href="/cabinconnect_faculty_portal_management/code.html"
-                    class="logo flex items-center gap-3 text-slate-900 dark:text-white">
+                <a href="/faculty/faculty.html" class="logo flex items-center gap-3 text-slate-900 dark:text-white">
                     <div class="size-8 bg-primary rounded-lg flex items-center justify-center">
                         <span class="material-symbols-outlined text-white text-xl">meeting_room</span>
                     </div>
@@ -397,6 +396,18 @@
                             class="mt-2 inline-flex items-center justify-center sm:justify-start gap-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary px-3 py-1 rounded-full w-fit">
                             <span class="material-symbols-outlined text-sm">room</span>
                             Cabin Number: <span id="profileCabin">—</span>
+                        </div>
+                        <div class="mt-3 flex flex-col sm:flex-row gap-4">
+                            <div
+                                class="inline-flex items-center justify-center sm:justify-start gap-2 text-sm font-medium text-slate-600 dark:text-white/70">
+                                <span class="material-symbols-outlined text-[16px] text-primary">mail</span>
+                                <span id="profileEmail">—</span>
+                            </div>
+                            <div
+                                class="inline-flex items-center justify-center sm:justify-start gap-2 text-sm font-medium text-slate-600 dark:text-white/70">
+                                <span class="material-symbols-outlined text-[16px] text-primary">call</span>
+                                <span id="profilePhone">—</span>
+                            </div>
                         </div>
                     </div>
                     <div class="sm:ml-auto">
@@ -716,7 +727,7 @@
         </div>
     </div>
 
-    <script src="../shared/data.js"></script>
+    <script src="/js/api.js"></script>
     <script>
         const session = CabinConnect.requireAuth(['faculty']);
 
@@ -736,6 +747,11 @@
             if (nameEl) nameEl.textContent = member.name;
             if (deptEl) deptEl.textContent = member.department;
             if (cabinEl) cabinEl.textContent = member.cabin;
+
+            const emailEl = document.getElementById('profileEmail');
+            const phoneEl = document.getElementById('profilePhone');
+            if (emailEl) emailEl.textContent = member.email || '—';
+            if (phoneEl) phoneEl.textContent = member.phone || '—';
 
             const localSettings = JSON.parse(localStorage.getItem('faculty_settings') || '{}');
             const avatarUrl = localSettings.profilePic || member.image;
@@ -874,8 +890,15 @@
         function updateProfileDisplay(settings) {
             const nameEl = document.querySelector('h3.text-2xl');
             const deptEl = document.querySelector('p.text-slate-500.text-base');
+            const cabinEl = document.getElementById('profileCabin');
+            const emailEl = document.getElementById('profileEmail');
+            const phoneEl = document.getElementById('profilePhone');
+
             if (nameEl) nameEl.textContent = settings.name;
             if (deptEl) deptEl.textContent = settings.department;
+            if (cabinEl) cabinEl.textContent = settings.cabin;
+            if (emailEl) emailEl.textContent = settings.email || '—';
+            if (phoneEl) phoneEl.textContent = settings.phone || '—';
 
             if (settings.profilePic) {
                 const avatars = document.querySelectorAll('.profile-avatar');
@@ -1138,7 +1161,7 @@
             }
 
             const reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = async function (e) {
                 const timetableData = {
                     name: file.name,
                     type: file.type,
@@ -1148,22 +1171,23 @@
                 };
 
                 try {
-                    localStorage.setItem('faculty_timetable', JSON.stringify(timetableData));
-                    loadTimetable();
-                    alert('Timetable uploaded successfully!');
-                } catch (error) {
-                    if (error.name === 'QuotaExceededError') {
-                        alert('File too large to store. Please use a smaller file.');
+                    const result = await CabinConnect.uploadTimetable(session.facultyId, timetableData);
+                    if (result.success) {
+                        loadTimetable();
+                        alert('Timetable uploaded successfully!');
                     } else {
-                        alert('Error saving file. Please try again.');
+                        throw new Error('Failed to upload');
                     }
+                } catch (error) {
+                    alert('Error saving file. Please try again.');
                 }
             };
             reader.readAsDataURL(file);
         }
 
-        function loadTimetable() {
-            const timetableData = JSON.parse(localStorage.getItem('faculty_timetable') || 'null');
+        async function loadTimetable() {
+            const member = await CabinConnect.getFacultyById(session.facultyId);
+            const timetableData = member ? member.timetable : null;
             const cardEl = document.getElementById('currentFileCard');
             const previewEl = document.getElementById('imagePreview');
 
@@ -1195,8 +1219,9 @@
             }
         }
 
-        function viewTimetable() {
-            const timetableData = JSON.parse(localStorage.getItem('faculty_timetable') || 'null');
+        async function viewTimetable() {
+            const member = await CabinConnect.getFacultyById(session.facultyId);
+            const timetableData = member ? member.timetable : null;
             if (timetableData) {
                 const newWindow = window.open();
                 if (timetableData.type === 'application/pdf') {
@@ -1208,21 +1233,17 @@
             }
         }
 
-        function deleteTimetable() {
-            // Remove from localStorage immediately (no confirm() to avoid click-event conflicts)
-            localStorage.removeItem('faculty_timetable');
+        async function deleteTimetable() {
+            await CabinConnect.deleteTimetable(session.facultyId);
 
-            // Reset the file input
             const fileInput = document.getElementById('fileInput');
             if (fileInput) fileInput.value = '';
 
-            // Hide the card and image preview directly
             const cardEl = document.getElementById('currentFileCard');
             const previewEl = document.getElementById('imagePreview');
             if (cardEl) cardEl.classList.add('hidden');
             if (previewEl) previewEl.classList.add('hidden');
 
-            // Clear displayed values
             const fileNameEl = document.getElementById('fileName');
             const fileDateEl = document.getElementById('fileDate');
             if (fileNameEl) fileNameEl.textContent = 'No file uploaded';
