@@ -5,9 +5,7 @@
 const CabinConnect = {
 
     // Base URL – works whether opened from the dev server or via file:// fallback
-    BASE_URL: window.location.hostname === "localhost"
-        ? "http://localhost:3000"
-        : "https://cabinconnect-s87g.onrender.com",,
+    BASE_URL: "https://cabinconnect-s87g.onrender.com",
 
     // ── Faculty API ────────────────────────────────────────────────────────────
 
